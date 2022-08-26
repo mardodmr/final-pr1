@@ -1,16 +1,15 @@
-import 'package:center/Screens/VerifyCodeScreen.dart';
+// import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:center/Screens/VerifyCodeScreen.dart';
+// import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'CreateProfileScreen.dart';
 import 'TextFieldWidget.dart';
+import 'VerifyCodeScreen.dart';
 
 class SignInScreen extends StatefulWidget {
   //const SignInScreen({Key? key}) : super(key: key);
-
-
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -25,7 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(left: 10, right:10, bottom: 20,top: 60),
+          padding: EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 60),
           width: double.infinity,
           color: Colors.white,
           child: Column(
@@ -100,21 +99,23 @@ class _SignInScreenState extends State<SignInScreen> {
                       'Sign In',
                       style: TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
-                    onPressed: () async{
+                    onPressed: () async {
                       await FirebaseAuth.instance.verifyPhoneNumber(
                         phoneNumber: '+971504015474',
-                        verificationCompleted: (PhoneAuthCredential credential) {},
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) {},
                         verificationFailed: (FirebaseAuthException e) {
                           setState(() {
                             verficationFailedMessage = e.code;
                           });
                         },
                         codeSent: (String verificationId, int? resendToken) {
-                          Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___) => VerifyCodeScreen(verficationId:verificationId)));
+                          Navigator.of(context).push(PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => VerifyCodeScreen(
+                                  verficationId: verificationId)));
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );
-
                     },
                   ),
                 ),
