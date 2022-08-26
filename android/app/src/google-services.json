@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "891757671401",
+    "firebase_url": "https://coursemate-84f39-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "coursemate-84f39",
+    "storage_bucket": "coursemate-84f39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891757671401:android:ef2634224c26515a03d178",
+        "android_client_info": {
+          "package_name": "com.example.center"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891757671401-hs0ov1bt9qng01g1433v46s7i5mcof02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.center",
+            "certificate_hash": "c6447275d39329b2ff33efe19c12e34db0b69dd0"
+          }
+        },
+        {
+          "client_id": "891757671401-qpil449f80bkcj9sjucv9rhmkl0b71p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.center",
+            "certificate_hash": "45e787f46ad494e556dcdd0ea25ecde9ce853764"
+          }
+        },
+        {
+          "client_id": "891757671401-uoitloh5uc8lchcoen794veeg28f0jv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZthWXg30Y7Kti90loAjpeMRKJRhIZTyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891757671401-uoitloh5uc8lchcoen794veeg28f0jv8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
