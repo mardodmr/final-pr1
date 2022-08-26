@@ -30,7 +30,7 @@ Future<void> main() async {
   runApp(MyApp());
   print("1111111");
 }
-/// WALAAAAAAAAAA
+/// WALAa 1
 Future initialization(BuildContext? context) async {
   await Future.delayed(Duration(seconds: 2));
 }
