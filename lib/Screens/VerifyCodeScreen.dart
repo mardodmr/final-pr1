@@ -1,18 +1,16 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-
-
-import 'package:center/Screens/CreateProfileScreen.dart';
+//import 'package:center/Screens/CreateProfileScreen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
-import 'package:center/Screens/SignInScreen.dart';
+//import 'package:center/Screens/SignInScreen.dart';
 
 import '../Utils/constant.dart';
+import 'CreateProfileScreen.dart';
 import 'HomeScreen.dart';
 import 'TextFieldWidget.dart';
-
 
 class VerifyCodeScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
@@ -47,8 +45,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-
-
   // final MyConnectivity _connectivity = MyConnectivity.instance;
 
   @override
@@ -61,12 +57,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        CreateProfileScreen())
-            );
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => CreateProfileScreen()));
           },
         ),
       ),
@@ -299,20 +291,21 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 fillColor: Color(0xEFEFEFFF),
-                onPressed: () async{
-                  smsText= tec1.text + tec2.text +tec3.text +tec4.text;
-                  PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: widget.verficationId, smsCode: smsText);
+                onPressed: () async {
+                  smsText = tec1.text + tec2.text + tec3.text + tec4.text;
+                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                      verificationId: widget.verficationId, smsCode: smsText);
 
                   // Sign the user in (or link) with the credential
                   await auth.signInWithCredential(credential);
 
-                  if(auth.currentUser?.uid != null) {
+                  if (auth.currentUser?.uid != null) {
                     Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
                   }
                 },
                 child: Text("Continue"),
@@ -376,7 +369,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   _onKeyboardTap(String value) {
     setState(() {
       //text = text + value;
-
     });
     _numberChange(value);
   }
