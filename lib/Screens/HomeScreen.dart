@@ -32,11 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
     'Main\nCategory6',
     'Main\nCategory7',
   ];
+  final List<String> Categorise = [
+    'assets/images/Electronics.jpg',
+    'assets/images/Beauty.jpg',
+    'assets/images/Painting.jpg',
+    'assets/images/Electro Repair.jpg',
+    'assets/images/Electronics.jpg',
+    'assets/images/Language.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
-    new GlobalKey<ScaffoldState>();
+        new GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -57,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-
                   ),
                   title: Text(
                     "Ahmad Jalal",
@@ -129,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Address",
                         style: TextStyle(
                             color:
-                            Colors.white, // Color.fromRGBO(41, 48, 60, 1),
+                                Colors.white, // Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -168,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Notification",
                         style: TextStyle(
                             color:
-                            Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -235,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Refer a Friend",
                         style: TextStyle(
                             color:
-                            Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -293,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(32),
                           color: Colors
                               .white //Color.fromRGBO(255, 255, 255, 0.15),
-                      ),
+                          ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -328,7 +335,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Icon(
                             Icons.wb_sunny_outlined,
                             color:
-                            Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                           ),
                           Text(
                             "  Dark",
@@ -452,7 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 16,
               ),
 
-              /// Available Courses
+              /// Available Categories Courses
               Container(
                 padding: EdgeInsets.only(left: 16, right: 16, top: 20),
                 width: double.infinity,
@@ -486,91 +493,88 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
 
-                        //see all
-                        // Container(
-                        //   width: 106,
-                        //   height: 33,
-                        //   child: RawMaterialButton(
-                        //     shape: RoundedRectangleBorder(
-                        //         borderRadius: BorderRadius.circular(100)),
-                        //     fillColor: Color.fromRGBO(255, 255, 255, 1),
-                        //     onPressed: () {},
-                        //     child: Row(
-                        //       mainAxisAlignment: MainAxisAlignment.center,
-                        //       children: [
-                        //         Text(
-                        //           "See All ",
-                        //           style: TextStyle(
-                        //             fontSize: 15,
-                        //             color: Color.fromRGBO(111, 118, 126, 1),
-                        //           ),
-                        //         ),
-                        //         Icon(
-                        //           Icons.keyboard_arrow_right,
-                        //           color: Color.fromRGBO(111, 118, 126, 1),
-                        //           size: 20,
-                        //         )
-                        //       ],
-                        //     ),
-                        //   ),
-                        // )
+                        /// walaa Edit see all Active
+                        Container(
+                          width: 106,
+                          height: 33,
+                          child: RawMaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100)),
+                            fillColor: Color.fromRGBO(255, 255, 255, 1),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "See All ",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromRGBO(111, 118, 126, 1),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Color.fromRGBO(111, 118, 126, 1),
+                                  size: 20,
+                                )
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                     SizedBox(
                       height: 20,
                     ),
 
-                    //Home Cleaning Lady
+                    ///walaa Edit All Categories Photos
 
-                    // Container(
-                    //   height: 220,
-                    //   child: ListView.builder(
-                    //       scrollDirection: Axis.horizontal,
-                    //       itemCount: name.length,
-                    //       itemBuilder: (BuildContext context, int index) {
-                    //         return Container(
-                    //           padding: EdgeInsets.all(5),
-                    //           height: 200,
-                    //           child: Column(
-                    //             children: [
-                    //               Container(
-                    //                 decoration: BoxDecoration(
-                    //                   borderRadius: BorderRadius.circular(14),
-                    //                   color: Color.fromRGBO(236, 234, 246, 1),
-                    //                 ),
-                    //                 width: 170,
-                    //                 height: 180,
-                    //                 child: ClipRRect(
-                    //                   borderRadius: BorderRadius.circular(14),
-                    //                   child: Image.asset(
-                    //                     "assets/images/CarepetCleaning.png",
-                    //                     fit: BoxFit.fill,
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //               SizedBox(
-                    //                 height: 10,
-                    //               ),
-                    //               Text(
-                    //                 "Home Cleaning",
-                    //                 style: TextStyle(
-                    //                     fontSize: 14,
-                    //                     fontWeight: FontWeight.w600),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         );
-                    //       }),
-                    // ),
+                    Container(
+                      height: 220,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: Categorise.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              padding: EdgeInsets.all(5),
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                      color: Color.fromRGBO(236, 234, 246, 1),
+                                    ),
+                                    width: 170,
+                                    height: 180,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(14),
+                                      child: Image.asset(
+                                        Categorise[index],
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    Categorise[index],
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: 16,
               ),
-
-
-
 
               /// All Categories
               // Container(
@@ -769,7 +773,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: RawMaterialButton(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(100)),
+                                            BorderRadius.circular(100)),
                                     fillColor: Color.fromRGBO(255, 255, 255, 1),
                                     onPressed: () {
                                       Navigator.pushReplacement(
@@ -780,14 +784,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     child: Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Book now! ",
                                           style: TextStyle(
                                             fontSize: 15,
                                             color:
-                                            Color.fromRGBO(51, 56, 63, 1),
+                                                Color.fromRGBO(51, 56, 63, 1),
                                           ),
                                         ),
                                         Icon(
@@ -809,8 +813,6 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 16,
               ),
-
-
 
               /// Get 25% Appliance Repair
               // Container(

@@ -36,8 +36,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: AppBar(
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
-        // Status bar color
-        statusBarColor: Colors.white,
+          // Status bar color
+          statusBarColor: Colors.white,
         ),
         backgroundColor: Colors.white,
         title: currentIndex == 2
@@ -93,6 +93,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       return Column(
                         children: [
                           Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
                             height: 495,
                             width: double.infinity,
                             child: Image.asset(
