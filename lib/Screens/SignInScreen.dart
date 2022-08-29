@@ -101,7 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     onPressed: () async {
                       await FirebaseAuth.instance.verifyPhoneNumber(
-                        phoneNumber: '+971504015474',
+                        phoneNumber: '+963937686971',
                         verificationCompleted:
                             (PhoneAuthCredential credential) {},
                         verificationFailed: (FirebaseAuthException e) {

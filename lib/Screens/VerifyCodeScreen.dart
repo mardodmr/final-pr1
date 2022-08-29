@@ -16,6 +16,7 @@ class VerifyCodeScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
 
   VerifyCodeScreen({required this.verficationId});
+
   final String verficationId;
 
   @override
@@ -37,11 +38,15 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   Color color2 = Colors.grey;
   Color color3 = Colors.grey;
   Color color4 = Colors.grey;
+  Color color5 = Colors.grey;
+  Color color6 = Colors.grey;
 
   var tec1 = TextEditingController();
   var tec2 = TextEditingController();
   var tec3 = TextEditingController();
   var tec4 = TextEditingController();
+  var tec5 = TextEditingController();
+  var tec6 = TextEditingController();
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -55,12 +60,14 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.black,
+          color:Color.fromRGBO(
+            21, 17, 149, 1.0),
           onPressed: () {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => CreateProfileScreen()));
           },
-        ),
+        ),title: Text("Confirmation Code",style: TextStyle(fontSize: 20,color: Color.fromRGBO(
+          21, 17, 149, 1.0),),),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -68,27 +75,25 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         height: double.infinity,
         color: Colors.white,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               height: 106,
               width: 215,
-              // child: Image.asset(
-              //   "assets/images/zona-black 2.png",
-              //   fit: BoxFit.contain,
-              // ),
+              child: Image.asset(
+                "assets/images/logo course mate.PNG",
+                fit: BoxFit.contain,
+              ),
             ),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              "Verification code",
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 9,
-            ),
+
+            // Text(
+            //   "Verification code",
+            //   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            // ),
+            // SizedBox(
+            //   height: 9,
+            // ),
             Text(
                 'We just send you a verify code. check your inbox to get them'),
 
@@ -281,6 +286,98 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     ),
                   ),
                   SizedBox(width: 10),
+                  Expanded(
+                    child: TextField(
+                      readOnly: true,
+                      keyboardType: TextInputType.none,
+                      controller: tec5,
+                      maxLength: 1,
+                      textAlign: TextAlign.center,
+                      buildCounter: (BuildContext context,
+                              {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                          null,
+                      textInputAction: TextInputAction.next,
+                      onChanged: (value) {
+                        if (value != '') {
+                          setState(() {
+                            color5 = Color(0xff9676FF);
+                          });
+                          FocusScope.of(context).nextFocus();
+                        } else {
+                          setState(() {
+                            color5 = Colors.grey;
+                          });
+                        }
+                      },
+                      cursorColor: Color(0xff9676FF),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xEFEFEFFF),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.redAccent),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        focusColor: color5,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: TextField(
+                      readOnly: true,
+                      keyboardType: TextInputType.none,
+                      controller: tec6,
+                      maxLength: 1,
+                      textAlign: TextAlign.center,
+                      buildCounter: (BuildContext context,
+                              {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                          null,
+                      textInputAction: TextInputAction.next,
+                      onChanged: (value) {
+                        if (value != '') {
+                          setState(() {
+                            color6 = Color(0xff9676FF);
+                          });
+                          FocusScope.of(context).nextFocus();
+                        } else {
+                          setState(() {
+                            color6 = Colors.grey;
+                          });
+                        }
+                      },
+                      cursorColor: Color(0xff9676FF),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xEFEFEFFF),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.redAccent),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                        ),
+                        focusColor: color6,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
                 ],
               ),
             ),
@@ -292,7 +389,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 fillColor: Color(0xEFEFEFFF),
                 onPressed: () async {
-                  smsText = tec1.text + tec2.text + tec3.text + tec4.text;
+                  smsText = tec1.text + tec2.text + tec3.text + tec4.text + tec5.text +tec6.text;
                   PhoneAuthCredential credential = PhoneAuthProvider.credential(
                       verificationId: widget.verficationId, smsCode: smsText);
 
@@ -314,10 +411,11 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
             SizedBox(
               height: 20,
             ),
-            Text(
-              "Re-send code in 0:20",
+            TextButton(onPressed: (){}, child: Text(
+              "Re-send code in",
               textAlign: TextAlign.center,
-            ),
+            ),),
+
             NumericKeyboard(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               onKeyboardTap: _onKeyboardTap,
@@ -346,6 +444,18 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     setState(() {
                       tec4.clear();
                       color4 = Colors.grey;
+                      i--;
+                    });
+                  }else if (i == 6) {
+                    setState(() {
+                      tec5.clear();
+                      color5 = Colors.grey;
+                      i--;
+                    });
+                  } else if (i == 7) {
+                    setState(() {
+                      tec6.clear();
+                      color6 = Colors.grey;
                       i--;
                     });
                   }
@@ -396,6 +506,18 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       setState(() {
         tec4.text = value;
         color4 = Color(0xff9676FF);
+        i++;
+      });
+    }else if (i == 5) {
+      setState(() {
+        tec5.text = value;
+        color5 = Color(0xff9676FF);
+        i++;
+      });
+    }else if (i == 6) {
+      setState(() {
+        tec6.text = value;
+        color6 = Color(0xff9676FF);
         i++;
       });
     }
