@@ -5,7 +5,7 @@
 // import 'package:center/Screens/SignInScreen.dart';
 // import 'package:center/Screens/CreateProfileScreen.dart';
 // import 'package:center/Screens/SubCategoriesScreen.dart';
-//import 'package:center/Screens/VerifyCodeScreen.dart';
+// import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Screens/HomeScreen.dart';
 import 'Screens/OnBoardingScreen.dart';
 import 'Screens/SignInScreen.dart';
-import 'Screens/VerifyCodeScreen.dart';
 import 'Utils/ThemeConstants.dart';
 import 'screens/BookingScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: VerifyCodeScreen(verficationId: "1"), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+      home: HomeScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
