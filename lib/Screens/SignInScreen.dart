@@ -17,8 +17,10 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   String countryCode = "+1";
-  String verficationFailedMessage = "";
+  String verificationFailedMessage = "";
   final TextEditingController _phoneController = TextEditingController();
+  late final FirebaseAuth _auth;
+  String phoneNumber = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,22 +102,31 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     onPressed: () async {
-                      await FirebaseAuth.instance.verifyPhoneNumber(
-                        phoneNumber: '+963937686971',
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return Center(child: CircularProgressIndicator());
+                          }
+                      );
+                      await _auth.verifyPhoneNumber(
+                        phoneNumber: phoneNumber,
                         verificationCompleted:
-                            (PhoneAuthCredential credential) {},
+                            (PhoneAuthCredential credential) async{},
                         verificationFailed: (FirebaseAuthException e) {
                           setState(() {
-                            verficationFailedMessage = e.code;
+                            verificationFailedMessage = e.code;
                           });
                         },
                         codeSent: (String verificationId, int? resendToken) {
-                          Navigator.of(context).push(PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => VerifyCodeScreen(
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VerifyCodeScreen(
                                   verficationId: verificationId)));
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );
+                      Navigator.of(context).pop();
                     },
                   ),
                 ),

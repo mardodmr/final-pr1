@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 //import 'package:center/Screens/SignInScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../Utils/constant.dart';
 import 'CreateProfileScreen.dart';
@@ -48,7 +49,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   var tec5 = TextEditingController();
   var tec6 = TextEditingController();
 
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var db = FirebaseFirestore.instance.collection("users");
 
   // final MyConnectivity _connectivity = MyConnectivity.instance;
 
@@ -394,16 +396,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       verificationId: widget.verficationId, smsCode: smsText);
 
                   // Sign the user in (or link) with the credential
-                  await auth.signInWithCredential(credential);
-
-                  if (auth.currentUser?.uid != null) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
-                      ),
-                    );
-                  }
+                  await _auth.signInWithCredential(credential);
+                  //_checkUser(phone);
                 },
                 child: Text("Continue"),
               ),
@@ -522,6 +516,34 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       });
     }
   }
+
+  _checkUser (String phone)async{
+    var id = _auth.currentUser?.uid;
+    var currentUserInfo = await db.doc(id).get();
+    if(!currentUserInfo.exists){
+      await db.doc(id).set(
+        {
+          "id": id,
+          "name": "",
+          "age": "",
+          "phone": phone,
+
+        }
+      );
+    }
+    else{
+      //بعات الايدي لصفحة الهوم
+      // هون فرش مخي نكمل في الحلقة القادمة
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    }
+
+  }
+
 }
 
 // class MyConnectivity {
