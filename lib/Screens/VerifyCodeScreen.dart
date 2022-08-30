@@ -537,7 +537,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => HomeScreen(Name: id.toString()),
         ),
       );
     }

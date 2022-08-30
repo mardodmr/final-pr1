@@ -6,6 +6,7 @@
 // import 'package:center/Screens/CreateProfileScreen.dart';
 // import 'package:center/Screens/SubCategoriesScreen.dart';
 // import 'package:center/Screens/VerifyCodeScreen.dart';
+import 'package:final_pr1/Screens/AddCourseScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+      home: AddCourseScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }

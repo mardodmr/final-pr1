@@ -17,7 +17,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 class HomeScreen extends StatefulWidget {
   // const HomeScreen({Key? key}) : super(key: key);
 
+late String Name;
 
+   HomeScreen({  this.Name = ""});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -445,6 +447,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Center(
                       child: AutoSizeText(
+                        ///get() the user name form database
                         "Hello " + "Walaa and Mardo" + " 👋",
                         style: TextStyle(
                             fontSize: 32,
