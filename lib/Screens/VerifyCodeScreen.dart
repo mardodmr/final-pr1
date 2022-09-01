@@ -3,6 +3,7 @@
 //import 'package:center/Screens/CreateProfileScreen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 //import 'package:center/Screens/SignInScreen.dart';
@@ -50,7 +51,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   var tec6 = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  var db = FirebaseFirestore.instance.collection("users");
+  var db = FirebaseFirestore.instance.collection('users');
 
   // final MyConnectivity _connectivity = MyConnectivity.instance;
 
@@ -397,7 +398,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
                   // Sign the user in (or link) with the credential
                   await _auth.signInWithCredential(credential);
-                  //_checkUser(phone);
+                  _checkUser();
                 },
                 child: Text("Continue"),
               ),
@@ -517,7 +518,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     }
   }
 
-  _checkUser (String phone)async{
+  _checkUser ()async{
     var id = _auth.currentUser?.uid;
     var currentUserInfo = await db.doc(id).get();
     if(!currentUserInfo.exists){
@@ -526,10 +527,15 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
           "id": id,
           "name": "",
           "age": "",
-          "phone": phone,
+          "phone": "+971504015474",
 
         }
       );
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+          builder: (context) => CreateProfileScreen()),
+    );
     }
     else{
       //بعات الايدي لصفحة الهوم
