@@ -398,7 +398,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
                   // Sign the user in (or link) with the credential
                   await _auth.signInWithCredential(credential);
-                  _checkUser();
+                  //_checkUser();
                 },
                 child: Text("Continue"),
               ),

@@ -18,7 +18,7 @@ class CreateProfileScreen extends StatefulWidget {
 enum SingingCharacter { male, female }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
-  String dropdownValue = "All Categorise";
+  String dropdownValue = "Elementary";
   final TextEditingController _phoneController = TextEditingController();
   String countryCode = "+1";
   SingingCharacter? _character = SingingCharacter.male;
@@ -147,26 +147,38 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               SizedBox(
                 height: 8,
+              ),Text(
+                "Education",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              DropdownButton(
-                  value: dropdownValue,
-                  items: <String>[
-                    'Elementary',
-                    'Secondary',
-                    'Highschool',
-                    'University',
-                  ].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? NewValue) {
-                    setState(() {
-                      dropdownValue = NewValue!;
-                      print(NewValue);
-                    });
-                  }),
+              SizedBox(
+                height: 8,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: DropdownButton(dropdownColor: Colors.red,
+                    hint: Text("sssssssssss"),
+                    value: dropdownValue,alignment: AlignmentDirectional.topCenter,
+                   iconSize: 35,
+                    items: <String>[
+
+                      'Elementary',
+                      'Secondary',
+                      'Highschool',
+                      'University',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? NewValue) {
+                      setState(() {
+                        dropdownValue = NewValue!;
+                        print(NewValue);
+                      });
+                    }),
+              ),
               SizedBox(
                 height: 8,
               ),
@@ -239,7 +251,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       title: const Text('Male'),
                       leading: Radio<SingingCharacter>(
                         value: SingingCharacter.male,
-                        groupValue: _character,
+                        groupValue: _character,activeColor: Colors.yellow,
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
@@ -253,7 +265,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       title: const Text('Female'),
                       leading: Radio<SingingCharacter>(
                         value: SingingCharacter.female,
-                        groupValue: _character,
+                        groupValue: _character,activeColor: Colors.red,
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
