@@ -14,11 +14,15 @@ class CreateProfileScreen extends StatefulWidget {
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
+
 enum SingingCharacter { male, female }
+
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
+  String dropdownValue = "All Categorise";
   final TextEditingController _phoneController = TextEditingController();
   String countryCode = "+1";
   SingingCharacter? _character = SingingCharacter.male;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,6 +94,79 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   hintText: 'Last Name',
                 ),
               ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Father's Name",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                onChanged: (val) {},
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Father's Name",
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Nationality",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                onChanged: (val) {},
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Nationality",
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Address",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                onChanged: (val) {},
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: "Address",
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              DropdownButton(
+                  value: dropdownValue,
+                  items: <String>[
+                    'Elementary',
+                    'Secondary',
+                    'Highschool',
+                    'University',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? NewValue) {
+                    setState(() {
+                      dropdownValue = NewValue!;
+                      print(NewValue);
+                    });
+                  }),
               SizedBox(
                 height: 8,
               ),
@@ -171,7 +248,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       ),
                     ),
                   ),
-
                   Expanded(
                     child: ListTile(
                       title: const Text('Female'),
@@ -182,13 +258,12 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           setState(() {
                             _character = value;
                           });
-                          },
+                        },
                       ),
                     ),
                   ),
                 ],
               ),
-
 
               SizedBox(
                 height: 50,
@@ -215,12 +290,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     //     builder: (context) => VerifyCodeScreen(),
                     //   ),
                     // );
-                  },  //onPressed
+                  }, //onPressed
                 ),
               ),
               SizedBox(
                 height: 8,
-
               ),
 
               // Row(

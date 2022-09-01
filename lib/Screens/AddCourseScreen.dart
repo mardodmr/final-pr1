@@ -59,7 +59,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     dropdownValue = NewValue!;
                     print(NewValue);
                   });
-                })
+                }),
           ],
         ),
       ),
