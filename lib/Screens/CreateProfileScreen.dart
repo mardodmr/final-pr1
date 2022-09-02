@@ -4,6 +4,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../Utils/constant.dart';
+import 'HomeScreen.dart';
 import 'SignInScreen.dart';
 import 'TextFieldWidget.dart';
 import 'VerifyCodeScreen.dart';
@@ -29,11 +30,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.black,
-          onPressed: () {}, //go back to sign in
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   color: Colors.black,
+        //   onPressed: () {
+        //
+        //   }, //go back to sign in
+        // ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -156,7 +159,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: DropdownButton(dropdownColor: Colors.red,
+                child: DropdownButton(dropdownColor: Colors.blueAccent,
                     hint: Text("sssssssssss"),
                     value: dropdownValue,alignment: AlignmentDirectional.topCenter,
                    iconSize: 35,
@@ -164,7 +167,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
                       'Elementary',
                       'Secondary',
-                      'Highschool',
+                      'High School',
                       'University',
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -278,10 +281,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
 
               SizedBox(
-                height: 50,
+                height: 30,
               ),
               Container(
-                // height: 48.0,
+                 //height: 30.0,
                 // width: 60.0,
                 color: Colors.white,
                 child: MaterialButton(
@@ -296,12 +299,15 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
                   onPressed: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => VerifyCodeScreen(),
-                    //   ),
-                    // );
+                    //
+
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
                   }, //onPressed
                 ),
               ),

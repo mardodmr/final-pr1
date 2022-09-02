@@ -115,6 +115,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
               //   left: 30,
               // ),
               Positioned(
+                top: 80,
+                left: 40,
                 child: Container(
                   width: 70,
                   height: 35,
@@ -143,10 +145,10 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                   //   ),
                   // ),
                 ),
-                top: 80,
-                left: 40,
               ),
               Positioned(
+                top: 15,
+                left: 40,
                 child: IconButton(
                   icon: Icon(
                     Icons.arrow_back,
@@ -159,10 +161,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                             builder: (context) => SubCategoriesScreen()));
                   },
                 ),
-                top: 15,
-                left: 40,
               ),
               Positioned(
+                top: 215,
+                left: 20,
+                right: 20,
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                     width: width,
@@ -296,11 +299,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         )
                       ],
                     )),
-                top: 215,
-                left: 20,
-                right: 20,
               ),
               Positioned(
+                top: 425,
+                left: 20,
+                right: 20,
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                     width: width,
@@ -482,11 +485,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         ),
                       ],
                     )),
-                top: 425,
-                left: 20,
-                right: 20,
               ),
               Positioned(
+                top: 585,
+                left: 20,
+                right: 20,
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                     width: width,
@@ -522,11 +525,11 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                         ),
                       ],
                     )),
-                top: 585,
-                left: 20,
-                right: 20,
               ),
               Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
                 child: Container(
                   height: 150,
                   padding: EdgeInsets.all(20),
@@ -631,9 +634,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     ],
                   ),
                 ),
-                left: 0,
-                right: 0,
-                bottom: 0,
               ),
             ],
           ),

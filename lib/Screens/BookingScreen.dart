@@ -1,5 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_local_variable, use_key_in_widget_constructors, non_constant_identifier_names
 
+import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -257,7 +258,13 @@ class _BookingScreenState extends State<BookingScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           fillColor: Color.fromRGBO(26, 27, 45, 1),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                            );
+                          },
                           child: Text(
                             "View all courses",
                             style: TextStyle(

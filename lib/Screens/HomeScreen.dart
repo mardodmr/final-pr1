@@ -73,10 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     "Ahmad Jalal",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
-                  subtitle: Text(
-                    "@ahmadj",
-                    style: TextStyle(fontSize: 13, color: Colors.white),
-                  ),
+
                 ),
               ),
               SizedBox(

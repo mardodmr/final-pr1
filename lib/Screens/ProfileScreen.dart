@@ -63,16 +63,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       fillColor: Theme.of(context).primaryColor,
-                      onPressed: () {},
+                      onPressed: () {
+                        // save changes methode
+                        // navigate to home and refresh
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()),
+                        );
+
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Edit Profile  ",
+                            "Done  ",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 12),
                           ),
-                          Icon(Icons.edit),
+                          Icon(Icons.done),
                         ],
                       ),
                     ),
@@ -97,10 +106,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: Text(
                     "Ahmad Jalal",
                     style: TextStyle(fontSize: 15),
-                  ),
-                  subtitle: Text(
-                    "@ahmadj",
-                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ),
