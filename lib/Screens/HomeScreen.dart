@@ -17,9 +17,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 class HomeScreen extends StatefulWidget {
   // const HomeScreen({Key? key}) : super(key: key);
 
-late String Name;
+late String userId;
 
-   HomeScreen({  this.Name = ""});
+   HomeScreen({  this.userId = ""});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

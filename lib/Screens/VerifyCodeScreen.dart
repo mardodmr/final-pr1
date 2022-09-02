@@ -27,8 +27,7 @@ class VerifyCodeScreen extends StatefulWidget {
 
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   int i = 1;
-  final phoneController = TextEditingController();
-  final otpController = TextEditingController();
+
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
@@ -398,7 +397,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
                   // Sign the user in (or link) with the credential
                   await _auth.signInWithCredential(credential);
-                  //_checkUser();
+                  _checkUser();
                 },
                 child: Text("Continue"),
               ),
@@ -534,8 +533,9 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-          builder: (context) => CreateProfileScreen()),
-    );
+          builder: (context) => CreateProfileScreen(),
+    ),
+      );
     }
     else{
       //بعات الايدي لصفحة الهوم
@@ -543,7 +543,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(Name: id.toString()),
+          builder: (context) => HomeScreen(userId: id.toString()),
         ),
       );
     }

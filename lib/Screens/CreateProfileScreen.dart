@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Utils/constant.dart';
@@ -12,6 +14,10 @@ import 'VerifyCodeScreen.dart';
 class CreateProfileScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
 
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var db = FirebaseFirestore.instance.collection('users');
+
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
@@ -19,10 +25,25 @@ class CreateProfileScreen extends StatefulWidget {
 enum SingingCharacter { male, female }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
-  String dropdownValue = "Elementary";
+  String dropdownValue = "";
   final TextEditingController _phoneController = TextEditingController();
-  String countryCode = "+1";
   SingingCharacter? _character = SingingCharacter.male;
+  TextEditingController _nationality = TextEditingController();
+  TextEditingController _firstname = TextEditingController();
+  TextEditingController _lastname = TextEditingController();
+  TextEditingController _fathername = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _education = TextEditingController();
+  //dropdownvalue to db
+  //_charachter to db
+
+  TextEditingController _email = TextEditingController();
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +95,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.text,
+                controller: _firstname,
                 onChanged: (val) {},
                 decoration: kTextFieldDecoration.copyWith(
                   //  TODO: prefix: DropD,
@@ -92,6 +114,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.text,
+                controller: _lastname,
                 onChanged: (val) {},
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Last Name',
@@ -109,6 +132,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.text,
+                controller: _fathername,
                 onChanged: (val) {},
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Father's Name",
@@ -126,7 +150,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.text,
-                onChanged: (val) {},
+                controller: _nationality,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Nationality",
                 ),
@@ -143,6 +167,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               TextField(
                 keyboardType: TextInputType.text,
+                controller: _address,
                 onChanged: (val) {},
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Address",
@@ -195,23 +220,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               TextField_SignUp(
                 prefix: SizedBox(
                   width: 150,
-                  child: Row(
-                    children: [
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 10),
-                      //   child: Icon(
-                      //     Icons.phone,
-                      //     color: Color(0xff9676FF),
-                      //   ),
-                      // ),
-                      CountryCodePicker(
-                        initialSelection: 'SY',
-                        onChanged: (value) {
-                          countryCode = value.toString();
-                        },
-                      ),
-                    ],
-                  ),
+
                 ),
                 hideInput: false,
                 keyboardType: TextInputType.phone,
@@ -232,6 +241,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (val) {},
+                controller: _email,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Email',
                 ),
@@ -299,7 +309,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
                   onPressed: () {
-                    //
+                    //set values
+                    _setUserData();
 
 
                     Navigator.pushReplacement(
@@ -314,36 +325,16 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               SizedBox(
                 height: 8,
               ),
-
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       "Already have an Account?   ",
-              //       textAlign: TextAlign.center,
-              //       style: TextStyle(color: Colors.grey),
-              //     ),
-              //     TextButton(
-              //       onPressed: () {
-              //         Navigator.pushReplacement(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (context) => SignInScreen(),
-              //           ),
-              //         );
-              //       },
-              //       child: Text(
-              //         "Sign In",
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(color: Colors.black),
-              //       ),
-              //     ),
-              //   ],
-              // )
             ],
           ),
         ),
       ),
     );
+  }
+
+  _setUserData()async{
+    //var id = _auth.currentUser?.uid;
+    //await db.doc().set({});
+
   }
 }
