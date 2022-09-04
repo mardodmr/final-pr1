@@ -14,7 +14,9 @@ import 'VerifyCodeScreen.dart';
 class CreateProfileScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
   late String userId;
+
   CreateProfileScreen({this.userId = ""});
+
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
@@ -24,7 +26,7 @@ enum SingingCharacter { male, female }
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var db = FirebaseFirestore.instance.collection('users');
-  String dropdownValue = "";
+  String dropdownValue = "Education Level";
   final TextEditingController _phoneController = TextEditingController();
   SingingCharacter? _character = SingingCharacter.male;
   TextEditingController _nationality = TextEditingController();
@@ -33,6 +35,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   TextEditingController _fathername = TextEditingController();
   TextEditingController _address = TextEditingController();
   TextEditingController _education = TextEditingController();
+
   //dropdownvalue to db
   //_charachter to db
 
@@ -185,6 +188,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     alignment: AlignmentDirectional.topCenter,
                     iconSize: 35,
                     items: <String>[
+                      'Education Level',
                       'Elementary',
                       'Secondary',
                       'High School',
@@ -303,6 +307,15 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ),
                   onPressed: () {
+                    print(_firstname.text);
+                    print(_lastname.text);
+                    print(_fathername.text);
+                    print(_nationality.text);
+                    print(_address.text);
+                    print(_education.text);
+                    print(_phoneController.text);
+                    print(_email.text);
+                    //print(_gender.text);
                     //set values
                     _setUserData();
 
