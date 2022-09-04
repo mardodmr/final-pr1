@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+
 //import 'package:center/Screens/SignInScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -27,7 +28,6 @@ class VerifyCodeScreen extends StatefulWidget {
 
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   int i = 1;
-
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
@@ -62,14 +62,19 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color:Color.fromRGBO(
-            21, 17, 149, 1.0),
+          color: Color.fromRGBO(21, 17, 149, 1.0),
           onPressed: () {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => CreateProfileScreen()));
           },
-        ),title: Text("Confirmation Code",style: TextStyle(fontSize: 20,color: Color.fromRGBO(
-          21, 17, 149, 1.0),),),
+        ),
+        title: Text(
+          "Confirmation Code",
+          style: TextStyle(
+            fontSize: 20,
+            color: Color.fromRGBO(21, 17, 149, 1.0),
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -391,7 +396,12 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 fillColor: Color(0xEFEFEFFF),
                 onPressed: () async {
-                  smsText = tec1.text + tec2.text + tec3.text + tec4.text + tec5.text +tec6.text;
+                  smsText = tec1.text +
+                      tec2.text +
+                      tec3.text +
+                      tec4.text +
+                      tec5.text +
+                      tec6.text;
                   PhoneAuthCredential credential = PhoneAuthProvider.credential(
                       verificationId: widget.verficationId, smsCode: smsText);
 
@@ -405,10 +415,13 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
             SizedBox(
               height: 20,
             ),
-            TextButton(onPressed: (){}, child: Text(
-              "Re-send code in",
-              textAlign: TextAlign.center,
-            ),),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Re-send code in",
+                textAlign: TextAlign.center,
+              ),
+            ),
 
             NumericKeyboard(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -440,7 +453,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       color4 = Colors.grey;
                       i--;
                     });
-                  }else if (i == 6) {
+                  } else if (i == 6) {
                     setState(() {
                       tec5.clear();
                       color5 = Colors.grey;
@@ -502,13 +515,13 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         color4 = Color(0xff9676FF);
         i++;
       });
-    }else if (i == 5) {
+    } else if (i == 5) {
       setState(() {
         tec5.text = value;
         color5 = Color(0xff9676FF);
         i++;
       });
-    }else if (i == 6) {
+    } else if (i == 6) {
       setState(() {
         tec6.text = value;
         color6 = Color(0xff9676FF);
@@ -517,39 +530,37 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     }
   }
 
-  _checkUser ()async{
+  _checkUser() async {
     var id = _auth.currentUser?.uid;
     var currentUserInfo = await db.doc(id).get();
-    if(!currentUserInfo.exists){
-      await db.doc(id).set(
-        {
-          "id": id,
-          "name": "",
-          "age": "",
-          "phone": "+971504015474",
-
-        }
-      );
+    if (!currentUserInfo.exists) {
+      await db.doc(id).set({
+        "id": id,
+        "name": "",
+        "age": "",
+        "phone": "+971504015474",
+      });
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-          builder: (context) => CreateProfileScreen(),
-    ),
+        context,
+        MaterialPageRoute(
+          builder: (context) => CreateProfileScreen(
+            userId: id.toString(),
+          ),
+        ),
       );
-    }
-    else{
+    } else {
       //بعات الايدي لصفحة الهوم
       // هون فرش مخي نكمل في الحلقة القادمة
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(userId: id.toString()),
+          builder: (context) => HomeScreen(
+            userId: id.toString(),
+          ),
         ),
       );
     }
-
   }
-
 }
 
 // class MyConnectivity {

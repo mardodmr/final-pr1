@@ -13,11 +13,8 @@ import 'VerifyCodeScreen.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
-
-
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  var db = FirebaseFirestore.instance.collection('users');
-
+  late String userId;
+  CreateProfileScreen({this.userId = ""});
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
@@ -25,6 +22,8 @@ class CreateProfileScreen extends StatefulWidget {
 enum SingingCharacter { male, female }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var db = FirebaseFirestore.instance.collection('users');
   String dropdownValue = "";
   final TextEditingController _phoneController = TextEditingController();
   SingingCharacter? _character = SingingCharacter.male;
@@ -38,12 +37,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   //_charachter to db
 
   TextEditingController _email = TextEditingController();
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +168,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               SizedBox(
                 height: 8,
-              ),Text(
+              ),
+              Text(
                 "Education",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -184,12 +178,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: DropdownButton(dropdownColor: Colors.blueAccent,
+                child: DropdownButton(
+                    dropdownColor: Colors.blueAccent,
                     hint: Text("sssssssssss"),
-                    value: dropdownValue,alignment: AlignmentDirectional.topCenter,
-                   iconSize: 35,
+                    value: dropdownValue,
+                    alignment: AlignmentDirectional.topCenter,
+                    iconSize: 35,
                     items: <String>[
-
                       'Elementary',
                       'Secondary',
                       'High School',
@@ -220,7 +215,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               TextField_SignUp(
                 prefix: SizedBox(
                   width: 150,
-
                 ),
                 hideInput: false,
                 keyboardType: TextInputType.phone,
@@ -256,7 +250,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               SizedBox(
                 height: 8,
               ),
-
               Row(
                 children: [
                   Expanded(
@@ -264,7 +257,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       title: const Text('Male'),
                       leading: Radio<SingingCharacter>(
                         value: SingingCharacter.male,
-                        groupValue: _character,activeColor: Colors.yellow,
+                        groupValue: _character,
+                        activeColor: Colors.yellow,
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
@@ -278,7 +272,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       title: const Text('Female'),
                       leading: Radio<SingingCharacter>(
                         value: SingingCharacter.female,
-                        groupValue: _character,activeColor: Colors.red,
+                        groupValue: _character,
+                        activeColor: Colors.red,
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
@@ -289,12 +284,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   ),
                 ],
               ),
-
               SizedBox(
                 height: 30,
               ),
               Container(
-                 //height: 30.0,
+                //height: 30.0,
                 // width: 60.0,
                 color: Colors.white,
                 child: MaterialButton(
@@ -311,7 +305,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   onPressed: () {
                     //set values
                     _setUserData();
-
 
                     Navigator.pushReplacement(
                       context,
@@ -332,9 +325,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     );
   }
 
-  _setUserData()async{
-    //var id = _auth.currentUser?.uid;
-    //await db.doc().set({});
-
+  _setUserData() async {
+    var id = _auth.currentUser?.uid;
+    await db.doc().set({});
   }
 }
