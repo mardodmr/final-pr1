@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Utils/constant.dart';
 
-// ignore: camel_case_types
+// ignore: cesamel_case_typ
 class TextField_SignUp extends StatelessWidget {
   late TextEditingController con;
   late Widget prefix;
