@@ -95,7 +95,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   validator: (value){
-                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value!)){
+                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
                       return "Enter a valid name";
                     }
                   },
