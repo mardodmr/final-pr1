@@ -16,9 +16,9 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   int selectedIndex = 0;
   final List<String> categories = [
-    'History',
+
     'Upcoming',
-    'Draft',
+    'Completed',
   ];
 
   @override
@@ -64,7 +64,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20.0),
+                                horizontal: 50.0, vertical: 20.0),
                             child: Container(
                               width: 90,
                               height: 50,
@@ -136,9 +136,9 @@ class _BookingScreenState extends State<BookingScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(indexLate: 1,),
       );
-    else if (selectedIndex == 0)
+    else
       return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -174,7 +174,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20.0),
+                                horizontal: 50.0, vertical: 20.0),
                             child: Container(
                               width: 90,
                               height: 50,
@@ -285,118 +285,118 @@ class _BookingScreenState extends State<BookingScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(indexLate: 1,),
       );
-    else
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text(
-            "I   Bookings",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: Color.fromRGBO(26, 27, 45, 1),
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Container(
-                    //color: Colors.white,
-                    height: 90.0,
-                    width: width,
-                    child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categories.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20.0),
-                            child: Container(
-                              width: 90,
-                              height: 50,
-                              child: RawMaterialButton(
-                                elevation: selectedIndex == index ? 2 : 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                fillColor: selectedIndex == index
-                                    ? Color.fromRGBO(230, 230, 232, 1)
-                                    : Theme.of(context).primaryColor,
-                                onPressed: () {
-                                  setState(() {
-                                    selectedIndex = index;
-                                  });
-                                },
-                                child: Text(
-                                  categories[index],
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: selectedIndex == index
-                                        ? Color.fromRGBO(26, 27, 45, 1)
-                                        : Color.fromRGBO(83, 87, 99, 1),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                SubWidgetBooking(
-                  Img1: "assets/images/AC.png",
-                  Title1: "AC Installation",
-                  SubTitle1: "Reference Code: #D-571224",
-                  Date: "8:00-9:00 AM,  09 Dec",
-                  Status: "Confirmed",
-                  Title2: "Westinghouse",
-                  SubTitle2: "Service provider",
-                  Img2: "assets/images/Westinghouse.png",
-                  FillColor: Color.fromRGBO(236, 248, 241, 1),
-                  TextColor: Color.fromRGBO(127, 192, 156, 1),
-                  FillColorImg: Color.fromRGBO(255, 188, 153, 1),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                SubWidgetBooking(
-                  Img1: "assets/images/Beauty.png",
-                  Title1: "Multi Mask Facial",
-                  SubTitle1: "Reference Code: #D-571224",
-                  Date: "8:00-9:00 AM,  09 Dec",
-                  Status: "Pending",
-                  Title2: "Sindenayu",
-                  SubTitle2: "Service provider",
-                  Img2: "assets/images/Sindenayu.png",
-                  FillColor: Color.fromRGBO(231, 183, 151, 1.0),
-                  TextColor: Color.fromRGBO(235, 131, 60, 1),
-                  FillColorImg: Color.fromRGBO(202, 189, 255, 1),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-              ],
-            ),
-          ),
-        ),
-        bottomNavigationBar: BottomNavBar(),
-      );
+    // else
+    //   return Scaffold(
+    //     appBar: AppBar(
+    //       elevation: 0,
+    //       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    //       title: Text(
+    //         "I   Bookings",
+    //         style: TextStyle(
+    //           fontSize: 24,
+    //           fontWeight: FontWeight.w700,
+    //           color: Color.fromRGBO(26, 27, 45, 1),
+    //         ),
+    //       ),
+    //     ),
+    //     body: SingleChildScrollView(
+    //       child: Padding(
+    //         padding: const EdgeInsets.all(20),
+    //         child: Column(
+    //           mainAxisAlignment: MainAxisAlignment.start,
+    //           children: [
+    //             Container(
+    //               decoration: BoxDecoration(
+    //                 borderRadius: BorderRadius.circular(8),
+    //                 color: Theme.of(context).primaryColor,
+    //               ),
+    //               child: Container(
+    //                 //color: Colors.white,
+    //                 height: 90.0,
+    //                 width: width,
+    //                 child: ListView.builder(
+    //                     physics: NeverScrollableScrollPhysics(),
+    //                     scrollDirection: Axis.horizontal,
+    //                     itemCount: categories.length,
+    //                     itemBuilder: (BuildContext context, int index) {
+    //                       return Padding(
+    //                         padding: EdgeInsets.symmetric(
+    //                             horizontal: 20.0, vertical: 20.0),
+    //                         child: Container(
+    //                           width: 90,
+    //                           height: 50,
+    //                           child: RawMaterialButton(
+    //                             elevation: selectedIndex == index ? 2 : 0,
+    //                             shape: RoundedRectangleBorder(
+    //                               borderRadius: BorderRadius.circular(8),
+    //                             ),
+    //                             fillColor: selectedIndex == index
+    //                                 ? Color.fromRGBO(230, 230, 232, 1)
+    //                                 : Theme.of(context).primaryColor,
+    //                             onPressed: () {
+    //                               setState(() {
+    //                                 selectedIndex = index;
+    //                               });
+    //                             },
+    //                             child: Text(
+    //                               categories[index],
+    //                               style: TextStyle(
+    //                                 fontSize: 15,
+    //                                 fontWeight: FontWeight.w600,
+    //                                 color: selectedIndex == index
+    //                                     ? Color.fromRGBO(26, 27, 45, 1)
+    //                                     : Color.fromRGBO(83, 87, 99, 1),
+    //                               ),
+    //                             ),
+    //                           ),
+    //                         ),
+    //                       );
+    //                     }),
+    //               ),
+    //             ),
+    //             SizedBox(
+    //               height: 5,
+    //             ),
+    //             SubWidgetBooking(
+    //               Img1: "assets/images/AC.png",
+    //               Title1: "AC Installation",
+    //               SubTitle1: "Reference Code: #D-571224",
+    //               Date: "8:00-9:00 AM,  09 Dec",
+    //               Status: "Confirmed",
+    //               Title2: "Westinghouse",
+    //               SubTitle2: "Service provider",
+    //               Img2: "assets/images/Westinghouse.png",
+    //               FillColor: Color.fromRGBO(236, 248, 241, 1),
+    //               TextColor: Color.fromRGBO(127, 192, 156, 1),
+    //               FillColorImg: Color.fromRGBO(255, 188, 153, 1),
+    //             ),
+    //             SizedBox(
+    //               height: 5,
+    //             ),
+    //             SubWidgetBooking(
+    //               Img1: "assets/images/Beauty.png",
+    //               Title1: "Multi Mask Facial",
+    //               SubTitle1: "Reference Code: #D-571224",
+    //               Date: "8:00-9:00 AM,  09 Dec",
+    //               Status: "Pending",
+    //               Title2: "Sindenayu",
+    //               SubTitle2: "Service provider",
+    //               Img2: "assets/images/Sindenayu.png",
+    //               FillColor: Color.fromRGBO(231, 183, 151, 1.0),
+    //               TextColor: Color.fromRGBO(235, 131, 60, 1),
+    //               FillColorImg: Color.fromRGBO(202, 189, 255, 1),
+    //             ),
+    //             SizedBox(
+    //               height: 5,
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     ),
+    //     bottomNavigationBar: BottomNavBar(),
+    //   );
   }
 }
 

@@ -15,7 +15,7 @@ class CreateProfileScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
   late String userId;
 
-  CreateProfileScreen({this.userId = ""});
+  CreateProfileScreen({ this.userId = ""});
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();

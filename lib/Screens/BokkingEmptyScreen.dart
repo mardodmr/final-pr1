@@ -16,8 +16,8 @@ class _BookingEmptyScreenState extends State<BookingEmptyScreen> {
   int selectedIndex = 0;
   final List<String> categories = [
     'Upcoming',
-    'History',
-    'Draft',
+    'Completed',
+
   ];
 
   @override
@@ -162,10 +162,9 @@ class _BookingEmptyScreenState extends State<BookingEmptyScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(indexLate: 1,),
       );
-    else if (selectedIndex == 1)
-      return Scaffold(
+    else  return Scaffold(
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Color.fromRGBO(249, 249, 249, 1),
@@ -234,80 +233,80 @@ class _BookingEmptyScreenState extends State<BookingEmptyScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(indexLate: 1,),
       );
-    else
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color.fromRGBO(249, 249, 249, 1),
-          title: Text(
-            "I   Bookings",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: Color.fromRGBO(26, 27, 45, 1),
-            ),
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    color: Colors.white,
-                    height: 90.0,
-                    width: width,
-                    child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categories.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 20.0),
-                            child: Container(
-                              color: Colors.white,
-                              width: 90,
-                              height: 50,
-                              child: RawMaterialButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                fillColor: selectedIndex == index
-                                    ? Color.fromRGBO(8, 7, 29, 0.2)
-                                    : Colors.transparent,
-                                onPressed: () {
-                                  setState(() {
-                                    selectedIndex = index;
-                                  });
-                                },
-                                child: Text(
-                                  categories[index],
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: selectedIndex == index
-                                          ? Color.fromRGBO(26, 27, 45, 1)
-                                          : Color.fromRGBO(83, 87, 99, 1)),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        bottomNavigationBar: BottomNavBar(),
-      );
+    // else
+    //   return Scaffold(
+    //     appBar: AppBar(
+    //       elevation: 0,
+    //       backgroundColor: Color.fromRGBO(249, 249, 249, 1),
+    //       title: Text(
+    //         "I   Bookings",
+    //         style: TextStyle(
+    //           fontSize: 24,
+    //           fontWeight: FontWeight.w700,
+    //           color: Color.fromRGBO(26, 27, 45, 1),
+    //         ),
+    //       ),
+    //     ),
+    //     body: SingleChildScrollView(
+    //       child: Padding(
+    //         padding: const EdgeInsets.all(20),
+    //         child: Container(
+    //           decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(8),
+    //             color: Colors.white,
+    //           ),
+    //           child: Column(
+    //             children: [
+    //               Container(
+    //                 color: Colors.white,
+    //                 height: 90.0,
+    //                 width: width,
+    //                 child: ListView.builder(
+    //                     physics: NeverScrollableScrollPhysics(),
+    //                     scrollDirection: Axis.horizontal,
+    //                     itemCount: categories.length,
+    //                     itemBuilder: (BuildContext context, int index) {
+    //                       return Padding(
+    //                         padding: EdgeInsets.symmetric(
+    //                             horizontal: 20.0, vertical: 20.0),
+    //                         child: Container(
+    //                           color: Colors.white,
+    //                           width: 90,
+    //                           height: 50,
+    //                           child: RawMaterialButton(
+    //                             shape: RoundedRectangleBorder(
+    //                               borderRadius: BorderRadius.circular(8),
+    //                             ),
+    //                             fillColor: selectedIndex == index
+    //                                 ? Color.fromRGBO(8, 7, 29, 0.2)
+    //                                 : Colors.transparent,
+    //                             onPressed: () {
+    //                               setState(() {
+    //                                 selectedIndex = index;
+    //                               });
+    //                             },
+    //                             child: Text(
+    //                               categories[index],
+    //                               style: TextStyle(
+    //                                   fontSize: 15,
+    //                                   fontWeight: FontWeight.w600,
+    //                                   color: selectedIndex == index
+    //                                       ? Color.fromRGBO(26, 27, 45, 1)
+    //                                       : Color.fromRGBO(83, 87, 99, 1)),
+    //                             ),
+    //                           ),
+    //                         ),
+    //                       );
+    //                     }),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //     bottomNavigationBar: BottomNavBar(),
+    //   );
   }
 }

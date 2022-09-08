@@ -12,15 +12,21 @@ import '../Screens/NotificationEmptyScreen.dart';
 
 class BottomNavBar extends StatefulWidget {
   //const BottomNavBar({Key? key}) : super(key: key);
-  late int indexLate;
-  BottomNavBar({this.indexLate=0});
+  final int indexLate;
+  BottomNavBar({required this.indexLate});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int index = 0;
+
+
+
+   int index  = 0;
+
+  int? get indexLate => index;
+
   savePref(int inIn) async {
     SharedPreferences Preferences = await SharedPreferences.getInstance();
     Preferences.setInt("index", inIn);
@@ -73,7 +79,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   text: 'Home Screen',
                   onPressed: () {
                     setState(() {
-                      savePref(0);Navigator.pushReplacement(context,
+                      savePref(0);
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => HomeScreen()));
                     });
 
