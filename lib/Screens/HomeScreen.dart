@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unnecessary_new, use_key_in_widget_constructors, unnecessary_import, unused_import
 
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 class HomeScreen extends StatefulWidget {
   // const HomeScreen({Key? key}) : super(key: key);
 
-late String userId;
+  late String userId;
 
-   HomeScreen({  this.userId = ""});
+  HomeScreen({this.userId = ""});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -46,6 +48,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Widget imageCarousel = new Container(
+      height: 250,
+      child: new Carousel(
+        boxFit: BoxFit.fitWidth,
+        dotSize: 5,
+        dotIncreasedColor: Colors.red,
+        dotColor: Colors.white,
+        indicatorBgPadding: 8,
+        images: [
+          AssetImage("assets/images/Electronics.jpg"),
+          AssetImage("assets/images/Beauty.jpg"),
+          AssetImage("assets/images/Painting.jpg"),
+          AssetImage("assets/images/Electro Repair.jpg"),
+          AssetImage("assets/images/Electronics.jpg"),
+          AssetImage("assets/images/Language.jpg"),
+        ],
+        autoplay: true,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+    );
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
     return Scaffold(
@@ -73,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     "Ahmad Jalal",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
-
                 ),
               ),
               SizedBox(
@@ -284,73 +306,73 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                width: double.infinity,
-                height: 48,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Color.fromRGBO(255, 255, 255, 0.15)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(32),
-                          color: Colors
-                              .white //Color.fromRGBO(255, 255, 255, 0.15),
-                          ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.wb_sunny,
-                            color: Color.fromRGBO(41, 48, 60, 1),
-                          ),
-                          Text(
-                            "  Light",
-                            style: TextStyle(
-                                color: Color.fromRGBO(41, 48, 60, 1),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 120,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(32),
-                        color: Colors
-                            .transparent, //Color.fromRGBO(255, 255, 255, 0.15),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.wb_sunny_outlined,
-                            color:
-                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
-                          ),
-                          Text(
-                            "  Dark",
-                            style: TextStyle(
-                                color: Colors
-                                    .white, //Color.fromRGBO(41, 48, 60, 1),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   width: double.infinity,
+              //   height: 48,
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(8),
+              //       color: Color.fromRGBO(255, 255, 255, 0.15)),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Container(
+              //         width: 120,
+              //         height: 35,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(32),
+              //             color: Colors
+              //                 .white //Color.fromRGBO(255, 255, 255, 0.15),
+              //             ),
+              //         child: Row(
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Icon(
+              //               Icons.wb_sunny,
+              //               color: Color.fromRGBO(41, 48, 60, 1),
+              //             ),
+              //             Text(
+              //               "  Light",
+              //               style: TextStyle(
+              //                   color: Color.fromRGBO(41, 48, 60, 1),
+              //                   fontSize: 15,
+              //                   fontWeight: FontWeight.w600),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 10,
+              //       ),
+              //       Container(
+              //         width: 120,
+              //         height: 35,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(32),
+              //           color: Colors
+              //               .transparent, //Color.fromRGBO(255, 255, 255, 0.15),
+              //         ),
+              //         child: Row(
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Icon(
+              //               Icons.wb_sunny_outlined,
+              //               color:
+              //                   Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+              //             ),
+              //             Text(
+              //               "  Dark",
+              //               style: TextStyle(
+              //                   color: Colors
+              //                       .white, //Color.fromRGBO(41, 48, 60, 1),
+              //                   fontSize: 15,
+              //                   fontWeight: FontWeight.w600),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -458,6 +480,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 16,
+              ),
+              Container(
+                width: double.infinity,
+                height: 266,
+                child: ListView(
+                  children: [imageCarousel],
+                ),
               ),
 
               /// Available Categories Courses
@@ -929,7 +958,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(indexLate: 0,),
+      bottomNavigationBar: BottomNavBar(
+        indexLate: 0,
+      ),
     );
   }
 
