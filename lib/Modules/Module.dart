@@ -12,6 +12,8 @@ import '../Screens/NotificationEmptyScreen.dart';
 
 class BottomNavBar extends StatefulWidget {
   //const BottomNavBar({Key? key}) : super(key: key);
+  late int indexLate;
+  BottomNavBar({this.indexLate=0});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -49,14 +51,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: GNav(
             selectedIndex: index,
             haptic: true, // haptic feedback
-            tabBorderRadius: 15,
-            // tabActiveBorder:
-            //     Border.all(color: Colors.black, width: 0), // tab button border
-            // tabBorder:
-            //     Border.all(color: Colors.grey, width: 0), // tab button border
+            tabBorderRadius: 25,
+            tabActiveBorder:
+                Border.all(color: Colors.black, width: 0), // tab button border
+            tabBorder:
+                Border.all(color: Colors.grey, width: 0), // tab button border
             curve: Curves.easeOutExpo, // tab animation curves
             duration: Duration(milliseconds: 500), // tab animation duration
-            gap: 8, // the tab button gap between icon and text
+            gap: 1, // the tab button gap between icon and text
             color: Color.fromRGBO(111, 118, 126, 1),
             rippleColor: Color.fromRGBO(26, 27, 45, 1), // unselected icon color
             activeColor: Color.fromRGBO(26, 27, 45, 1),
@@ -64,52 +66,52 @@ class _BottomNavBarState extends State<BottomNavBar> {
             // tabBackgroundColor:
             //     Colors.purple.withOpacity(0.1), // selected tab background color
             padding: EdgeInsets.symmetric(
-                horizontal: 10, vertical: 5), // navigation bar padding
+                horizontal: 5, vertical: 5), // navigation bar padding
             tabs: [
               GButton(
                   icon: Icons.home,
-                  text: '',
+                  text: 'Home Screen',
                   onPressed: () {
                     setState(() {
-                      savePref(0);
+                      savePref(0);Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()));
                     });
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+
                   }),
-              GButton(
-                  icon: Icons.article_rounded,
-                  text: '',
-                  onPressed: () {
-                    setState(() {
-                      savePref(0);
-                    });
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CategoriesScreen()));
-                  }),
-              GButton(
-                  icon: Icons.notifications,
-                  text: '',
-                  onPressed: () {
-                    setState(() async {
-                      savePref(2);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NotificationEmptyScreen()));
-                    });
-                  }),
+              // GButton(
+              //     icon: Icons.article_rounded,
+              //     text: '',
+              //     onPressed: () {
+              //       setState(() {
+              //         savePref(0);
+              //       });
+              //       Navigator.pushReplacement(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => CategoriesScreen()));
+              //     }),
+              // GButton(
+              //     icon: Icons.notifications,
+              //     text: '',
+              //     onPressed: () {
+              //       setState(() async {
+              //         savePref(2);
+              //         Navigator.pushReplacement(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => NotificationEmptyScreen()));
+              //       });
+              //     }),
               GButton(
                   icon: Icons.density_large,
-                  text: '',
+                  text: 'See More',
                   onPressed: () {
-                    setState(() {
+                    setState(() {savePref(1);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => BookingScreen()));
-                      savePref(3);
+
                     });
                   }),
             ]),
