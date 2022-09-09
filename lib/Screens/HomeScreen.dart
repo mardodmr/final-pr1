@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unnecessary_new, use_key_in_widget_constructors, unnecessary_import, unused_import
 
-import 'package:carousel_pro/carousel_pro.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +14,7 @@ import 'ReferFriend.dart';
 import 'SubCategoriesScreen.dart';
 import 'TextFieldWidget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   // const HomeScreen({Key? key}) : super(key: key);
@@ -22,11 +23,13 @@ class HomeScreen extends StatefulWidget {
 
   HomeScreen({this.userId = ""});
 
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _phoneController = TextEditingController();
   final List<String> name = [
     'U ... UP\nSpecial',
@@ -46,31 +49,57 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/Language.jpg',
   ];
 
+  final imageList = [
+    'assets/images/Electronics.jpg',
+    'assets/images/Beauty.jpg',
+    'assets/images/Painting.jpg',
+    'assets/images/Electro Repair.jpg',
+    'assets/images/Electronics.jpg',
+    'assets/images/Language.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    Widget imageCarousel = new Container(
-      height: 250,
-      child: new Carousel(
-        boxFit: BoxFit.fitWidth,
-        dotSize: 5,
-        dotIncreasedColor: Colors.red,
-        dotColor: Colors.white,
-        indicatorBgPadding: 8,
-        images: [
-          AssetImage("assets/images/Electronics.jpg"),
-          AssetImage("assets/images/Beauty.jpg"),
-          AssetImage("assets/images/Painting.jpg"),
-          AssetImage("assets/images/Electro Repair.jpg"),
-          AssetImage("assets/images/Electronics.jpg"),
-          AssetImage("assets/images/Language.jpg"),
-        ],
-        autoplay: true,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
-      ),
-    );
-    final GlobalKey<ScaffoldState> _scaffoldKey =
-        new GlobalKey<ScaffoldState>();
+    Widget carouselSlider = new SafeArea
+      (
+        child: CarouselSlider(
+          options: CarouselOptions(
+            height: 300,
+            aspectRatio: 16 / 9,
+            viewportFraction: 1,
+            initialPage: 0,
+            enableInfiniteScroll: true,
+            reverse: false,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 3),
+            autoPlayAnimationDuration: Duration(milliseconds: 1500),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            enlargeCenterPage: true,
+            //onPageChanged: callbackFunction,
+            scrollDirection: Axis.horizontal,
+          ),
+          items: imageList.map((imagePath) =>
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.asset(imagePath)
+                  ],
+                ),
+              )).toList()),
+        );
+
+        //{
+        //
+        //         return Padding(
+        //           padding: const EdgeInsets.symmetric(horizontal: 4),
+        //           child: Image.asset(imagePath),
+        //         );
+        //       }).toList()),
+        // );
+
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -158,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Address",
                         style: TextStyle(
                             color:
-                                Colors.white, // Color.fromRGBO(41, 48, 60, 1),
+                            Colors.white, // Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -197,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Notification",
                         style: TextStyle(
                             color:
-                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                            Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -264,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "  Refer a Friend",
                         style: TextStyle(
                             color:
-                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                            Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                             fontSize: 15,
                             fontWeight: FontWeight.w600),
                       )
@@ -466,6 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Center(
                       child: AutoSizeText(
+
                         ///get() the user name form database
                         "Hello " + "Walaa and Mardo" + " 👋",
                         style: TextStyle(
@@ -485,7 +515,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 height: 266,
                 child: ListView(
-                  children: [imageCarousel],
+                  children: [carouselSlider],
                 ),
               ),
 
@@ -803,7 +833,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: RawMaterialButton(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
-                                            BorderRadius.circular(100)),
+                                        BorderRadius.circular(100)),
                                     fillColor: Color.fromRGBO(255, 255, 255, 1),
                                     onPressed: () {
                                       Navigator.pushReplacement(
@@ -814,14 +844,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Book now! ",
                                           style: TextStyle(
                                             fontSize: 15,
                                             color:
-                                                Color.fromRGBO(51, 56, 63, 1),
+                                            Color.fromRGBO(51, 56, 63, 1),
                                           ),
                                         ),
                                         Icon(
@@ -960,7 +990,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavBar(
         indexLate: 0,
-      ),
+      )
+      ,
     );
   }
 

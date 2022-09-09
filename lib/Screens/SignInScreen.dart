@@ -125,7 +125,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => VerifyCodeScreen(
-                                  verficationId: verificationId)));
+                                  verficationId: verificationId,
+                                  userPhone: phoneNumber,
+                              )
+                            )
+                          );
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );

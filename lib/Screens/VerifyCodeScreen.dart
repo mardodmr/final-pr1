@@ -18,9 +18,10 @@ import 'TextFieldWidget.dart';
 class VerifyCodeScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
 
-  VerifyCodeScreen({required this.verficationId});
+  VerifyCodeScreen({required this.verficationId, required this.userPhone});
 
   final String verficationId;
+  final String userPhone;
 
   @override
   State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
@@ -538,13 +539,14 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         "id": id,
         "name": "",
         "age": "",
-        "phone": "+971504015474",
+        "phone": widget.userPhone,
       });
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => CreateProfileScreen(
             userId: id.toString(),
+            userPhone: widget.userPhone,
           ),
         ),
       );

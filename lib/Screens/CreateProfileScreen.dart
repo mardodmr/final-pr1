@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,12 +12,14 @@ import 'HomeScreen.dart';
 import 'SignInScreen.dart';
 import 'TextFieldWidget.dart';
 import 'VerifyCodeScreen.dart';
+import 'package:regexed_validator/regexed_validator.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
   late String userId;
+  late String userPhone;
 
-  CreateProfileScreen({ this.userId = ""});
+  CreateProfileScreen({ this.userId = "", this.userPhone = ""});
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
@@ -25,11 +29,12 @@ enum SingingCharacter { male, female }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
+  final formKey= GlobalKey<FormState>();
   var db = FirebaseFirestore.instance.collection('users');
   String dropdownValue = "Education Level";
   final TextEditingController _phoneController = TextEditingController();
   SingingCharacter? _character = SingingCharacter.male;
-  TextEditingController _nationality = TextEditingController();
+  TextEditingController _nationality = TextEditingController(text: 'Syrian');
   TextEditingController _firstname = TextEditingController();
   TextEditingController _lastname = TextEditingController();
   TextEditingController _fathername = TextEditingController();
@@ -43,8 +48,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final formKey= GlobalKey<FormState>();
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -118,6 +126,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                  validator: (value){
+                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                      return "Enter a valid last name";
+                    }
+                  },
                   controller: _lastname,
                   onChanged: (val) {},
                   decoration: kTextFieldDecoration.copyWith(
@@ -137,6 +150,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   controller: _fathername,
+                  validator: (value){
+                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                      return "Enter a valid name";
+                    }
+                  },
                   onChanged: (val) {},
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: "Father's Name",
@@ -171,6 +189,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
+                    validator: (value){
+                      if(value!.isEmpty || RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)){
+                        return "Enter a valid address";
+                      }
+                    },
                   controller: _address,
                   onChanged: (val) {},
                   decoration: kTextFieldDecoration.copyWith(
@@ -224,15 +247,18 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 SizedBox(
                   height: 8,
                 ),
-                TextField_SignUp(
-                  prefix: SizedBox(
-                    width: 150,
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  validator: (value){
+                    if(value!.isEmpty || RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(value)){
+                      return "Enter a valid phone number";
+                    }
+                  },
+                  controller: _phoneController,
+                  onChanged: (val) {},
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: "+963 933 111 222",
                   ),
-                  hideInput: false,
-                  keyboardType: TextInputType.phone,
-                  con: _phoneController,
-                  hintText: 'ex: 933111222',
-                  //LocaleKeys.B03signUpScreen_number.tr(),
                 ),
                 SizedBox(
                   height: 8,
@@ -246,6 +272,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
+                  validator: (value){
+                    if(!validator.email(value!)){
+                      return "Please enter a valid email";
+                    }
+                  },
                   onChanged: (val) {},
                   controller: _email,
                   decoration: kTextFieldDecoration.copyWith(
@@ -325,14 +356,22 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       print(_email.text);
                       //print(_gender.text);
                       //set values
-                      _setUserData();
+                      if(formKey.currentState!.validate()){
+                        final snackBar = SnackBar(content: Text('Submitting your data...'));
+                        _scaffoldKey.currentState!.showSnackBar(snackBar);
 
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
-                        ),
-                      );
+                        _setUserData();
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                        );
+
+                      }
+
+
                     }, //onPressed
                   ),
                 ),
@@ -349,6 +388,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   _setUserData() async {
 
-    await db.doc().set({});
+    await db.doc(widget.userId).set({
+      "name": _firstname.text + _fathername.text + _lastname.text,
+      "nationality": _nationality,
+      "address": _address,
+      "education": dropdownValue,
+      "email": _email,
+      "gender": _character,
+    });
   }
 }
