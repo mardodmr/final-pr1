@@ -1,17 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../Utils/constant.dart';
 import 'HomeScreen.dart';
-import 'SignInScreen.dart';
-import 'TextFieldWidget.dart';
-import 'VerifyCodeScreen.dart';
 import 'package:regexed_validator/regexed_validator.dart';
 
 class CreateProfileScreen extends StatefulWidget {
@@ -358,17 +351,15 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       //set values
                       if(formKey.currentState!.validate()){
                         final snackBar = SnackBar(content: Text('Submitting your data...'));
-                        _scaffoldKey.currentState!.showSnackBar(snackBar);
 
+                       // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
                         _setUserData();
-
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomeScreen(),
                           ),
                         );
-
                       }
 
 

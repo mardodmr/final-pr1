@@ -103,6 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     onPressed: () async {
+                      print ("1");
                       phoneNumber="+971"+  _phoneController.text;
                       // showDialog(
                       //     context: context,

@@ -1,5 +1,4 @@
 // ignore_for_file: await_only_futures, non_constant_identifier_names, avoid_print, use_key_in_widget_constructors, prefer_const_constructors, unused_import
-
 // import 'package:center/Screens/ProfileScreen.dart';
 // import 'package:center/Screens/ServiceDetailsScreen.dart';
 // import 'package:center/Screens/SignInScreen.dart';
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          HomeScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          SignInScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
