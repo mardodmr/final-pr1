@@ -104,7 +104,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     onPressed: () async {
                       print ("1");
-                      phoneNumber="+971"+  _phoneController.text;
+                      phoneNumber="+971${_phoneController.text}";
+                      print(_phoneController);
+                      print(phoneNumber);
                       // showDialog(
                       //     context: context,
                       //     builder: (context){
