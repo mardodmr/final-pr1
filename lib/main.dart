@@ -10,6 +10,7 @@ import 'package:final_pr1/Screens/CreateProfileScreen.dart';
 import 'package:final_pr1/Screens/MapScreen.dart';
 import 'package:final_pr1/Screens/NotificationEmptyScreen.dart';
 import 'package:final_pr1/Screens/ServiceDetailsScreen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,6 +28,7 @@ bool firstUse = false;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseAppCheck.instance.activate();
   FlutterNativeSplash.removeAfter(initialization);
   SharedPreferences Preferences = await SharedPreferences.getInstance();
   firstUse = await Preferences.getBool("firstUse") ?? false;
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          AddCourseScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          SignInScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
