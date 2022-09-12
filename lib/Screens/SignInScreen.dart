@@ -104,7 +104,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     onPressed: () async {
                       print ("1");
-                      phoneNumber="+963937667069";
+                      phoneNumber= "+16505551234";
                       print(_phoneController);
                       print(phoneNumber);
                       // showDialog(
@@ -114,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       //     }
                       // );
                       await _auth.verifyPhoneNumber(
-                        phoneNumber: phoneNumber,
+                        phoneNumber: '+963937667069',
                         verificationCompleted:
                             (PhoneAuthCredential credential) async{},
                         verificationFailed: (FirebaseAuthException e) {
