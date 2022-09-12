@@ -96,7 +96,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   validator: (value){
-                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    if(value!.isEmpty /*|| RegExp(r'^[a-z A-Z]+$').hasMatch(value)*/){
                       return "Enter a valid name";
                     }
                   },
@@ -120,7 +120,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   validator: (value){
-                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    if(value!.isEmpty /*|| RegExp(r'^[a-z A-Z]+$').hasMatch(value)*/){
                       return "Enter a valid last name";
                     }
                   },
@@ -144,7 +144,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   keyboardType: TextInputType.text,
                   controller: _fathername,
                   validator: (value){
-                    if(value!.isEmpty || RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    if(value!.isEmpty /*|| RegExp(r'^[a-z A-Z]+$').hasMatch(value)*/){
                       return "Enter a valid name";
                     }
                   },
@@ -383,7 +383,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
       "name": _firstname.text + _fathername.text + _lastname.text,
       "nationality": _nationality,
       "address": _address,
-      "education": dropdownValue,
+      //"education": dropdownValue,
       "email": _email,
       "gender": _character,
     });
