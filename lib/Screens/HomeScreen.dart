@@ -1,6 +1,10 @@
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unnecessary_new, use_key_in_widget_constructors, unnecessary_import, unused_import
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_pr1/Modules/get_course_info.dart';
 import 'package:final_pr1/Screens/ServiceDetailsScreen.dart';
+import 'package:final_pr1/Screens/SignInScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +27,14 @@ class HomeScreen extends StatefulWidget {
 
   HomeScreen({this.userId = ""});
 
+
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _phoneController = TextEditingController();
   final List<String> name = [
@@ -56,6 +63,20 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/Electronics.jpg',
     'assets/images/Language.jpg',
   ];
+
+  // course ids
+  List<String> courseIDs = [];
+
+  //get ids
+  Future getCourseIDs() async {
+    await FirebaseFirestore.instance
+        .collection('courses')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+      print(document.reference);
+      courseIDs.add(document.reference.id);
+    }));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder:  (context) =>ServiceDetailsScreen(),
+                        builder: (context) => ServiceDetailsScreen(),
                       ),
                     );
                   },
@@ -415,6 +436,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       appBar: AppBar(
+        actions: [GestureDetector(
+            onTap: (){
+              FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignInScreen(),
+                ),
+              );
+            },
+            child: Icon(Icons.logout))],
         elevation: 0,
         toolbarHeight: 60,
         backgroundColor: Colors.white,
@@ -504,7 +536,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Center(
                       child: AutoSizeText(
                         ///get() the user name form database
-                        "Hello " + "Walaa and Mardo" + " 👋",
+                        "Hello " + /*user.firstname*/  " 👋",
                         style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -523,6 +555,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 266,
                 child: ListView(
                   children: [carouselSlider],
+                ),
+              ),
+
+              Expanded(
+                child: FutureBuilder(
+                  future: getCourseIDs(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      itemCount: courseIDs.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            title: GetCourseNames(documentId: courseIDs[index],),
+                            tileColor: Colors.deepOrangeAccent,
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
 

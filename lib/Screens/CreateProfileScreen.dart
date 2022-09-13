@@ -379,13 +379,16 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   _setUserData() async {
 
-    await db.doc(widget.userId).set({
-      "name": _firstname.text + _fathername.text + _lastname.text,
+    await db.doc(widget.userId).update({
+      "first name": _firstname.text,
+      "father name": _fathername.text,
+      "last name": _lastname.text,
       "nationality": _nationality,
       "address": _address,
-      //"education": dropdownValue,
+      "education": dropdownValue,
       "email": _email,
       "gender": _character,
+      "permission": "user",
     });
   }
 }
