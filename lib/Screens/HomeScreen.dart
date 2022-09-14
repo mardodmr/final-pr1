@@ -515,563 +515,568 @@ class _HomeScreenState extends State<HomeScreen> {
               hintStyle: TextStyle()),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(height:1000,
-              width: double.infinity,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      // Greeting Box
-                      Container(
-                        width: double.infinity,
-                        height: 100,
-                        padding: EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: AutoSizeText(
-                                ///get() the user name form database
-                                "Hello " + /*user.firstname*/ " 👋",
-                                style: TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(23, 43, 77, 1)),
-                                maxLines: 1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 266,
-                        child: ListView(
-                          children: [carouselSlider],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-
-                      /// Available Categories Courses
-                      Container(
-                        padding: EdgeInsets.only(left: 16, right: 16, top: 20),
-                        width: double.infinity,
-                        height: 295,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(height:1000,
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          // Greeting Box
+                          Container(
+                            width: double.infinity,
+                            height: 100,
+                            padding: EdgeInsets.all(30),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                //headline bar
-                                Text(
-                                  "I",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color.fromRGBO(202, 189, 255, 1),
+                                Center(
+                                  child: AutoSizeText(
+                                    ///get() the user name form database
+                                    "Hello " + /*user.firstname*/ " 👋",
+                                    style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromRGBO(23, 43, 77, 1)),
+                                    maxLines: 1,
                                   ),
                                 ),
-                                //headline text
-                                Text(
-                                  "Available Courses",
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(23, 43, 77, 1),
-                                  ),
-                                ),
-
-                                /// walaa Edit see all Active
-                                Container(
-                                  width: 106,
-                                  height: 33,
-                                  child: RawMaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(100)),
-                                    fillColor: Color.fromRGBO(255, 255, 255, 1),
-                                    onPressed: () {},
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "See All ",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(111, 118, 126, 1),
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.keyboard_arrow_right,
-                                          color: Color.fromRGBO(111, 118, 126, 1),
-                                          size: 20,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
                               ],
                             ),
-                            SizedBox(
-                              height: 20,
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 266,
+                            child: ListView(
+                              children: [carouselSlider],
                             ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
 
-                            ///walaa Edit All Categories Photos
-
-                            Container(
-                              height: 220,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: Categorise.length,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return Container(
-                                      padding: EdgeInsets.all(5),
-                                      height: 200,
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(14),
-                                              color:
-                                                  Color.fromRGBO(236, 234, 246, 1),
-                                            ),
-                                            width: 170,
-                                            height: 180,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(14),
-                                              child: Image.asset(
-                                                Categorise[index],
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            Categorise[index],
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
+                          /// Available Categories Courses
+                          Container(
+                            padding: EdgeInsets.only(left: 16, right: 16, top: 20),
+                            width: double.infinity,
+                            height: 295,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    //headline bar
+                                    Text(
+                                      "I",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color.fromRGBO(202, 189, 255, 1),
                                       ),
-                                    );
-                                  }),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-
-                      /// All Categories
-                      // Container(
-                      //   width: double.infinity,
-                      //   height: 150,
-                      //   padding: EdgeInsets.all(16),
-                      //   decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(8),
-                      //       color: Colors.white),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //     children: [
-                      //       Column(
-                      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //         children: [
-                      //           GestureDetector(
-                      //             onTap: () {
-                      //               Navigator.pushReplacement(
-                      //                   context,
-                      //                   MaterialPageRoute(
-                      //                       builder: (context) =>
-                      //                           SubCategoriesScreen()));
-                      //             },
-                      //             child: Container(
-                      //               width: 70,
-                      //               height: 70,
-                      //               padding: EdgeInsets.all(14),
-                      //               decoration: BoxDecoration(
-                      //                   borderRadius: BorderRadius.circular(100),
-                      //                   color: Color.fromRGBO(255, 188, 153, 1)),
-                      //               child: Image.asset(
-                      //                 "assets/images/AC.png",
-                      //                 fit: BoxFit.fitWidth,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //           Text(
-                      //             "AC Repair",
-                      //             style: TextStyle(
-                      //                 fontSize: 15,
-                      //                 color: Color.fromRGBO(65, 64, 93, 1)),
-                      //           )
-                      //         ],
-                      //       ),
-                      //       Column(
-                      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //         children: [
-                      //           GestureDetector(
-                      //             onTap: () {},
-                      //             child: Container(
-                      //               width: 70,
-                      //               height: 70,
-                      //               padding: EdgeInsets.all(14),
-                      //               decoration: BoxDecoration(
-                      //                   borderRadius: BorderRadius.circular(100),
-                      //                   color: Color.fromRGBO(202, 189, 255, 1)),
-                      //               child: Image.asset(
-                      //                 "assets/images/Beauty.png",
-                      //                 fit: BoxFit.fitWidth,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //           Text(
-                      //             "Beauty",
-                      //             style: TextStyle(
-                      //                 fontSize: 15,
-                      //                 color: Color.fromRGBO(65, 64, 93, 1)),
-                      //           )
-                      //         ],
-                      //       ),
-                      //       Column(
-                      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //         children: [
-                      //           GestureDetector(
-                      //             onTap: () {
-                      //               Navigator.pushReplacement(
-                      //                   context,
-                      //                   MaterialPageRoute(
-                      //                       builder: (context) =>
-                      //                           SubCategoriesScreen()));
-                      //             },
-                      //             child: Container(
-                      //               width: 70,
-                      //               height: 70,
-                      //               padding: EdgeInsets.all(14),
-                      //               decoration: BoxDecoration(
-                      //                   borderRadius: BorderRadius.circular(100),
-                      //                   color: Color.fromRGBO(177, 229, 252, 1)),
-                      //               child: Image.asset(
-                      //                 "assets/images/Appliance.png",
-                      //                 fit: BoxFit.fitWidth,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //           Text(
-                      //             "Appliance",
-                      //             style: TextStyle(
-                      //                 fontSize: 15,
-                      //                 color: Color.fromRGBO(65, 64, 93, 1)),
-                      //           )
-                      //         ],
-                      //       ),
-                      //       Column(
-                      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //         children: [
-                      //           GestureDetector(
-                      //             onTap: () {
-                      //               print("222222654684");
-                      //               Navigator.pushReplacement(
-                      //                   context,
-                      //                   MaterialPageRoute(
-                      //                       builder: (context) => CategoriesScreen()));
-                      //             },
-                      //             child: Container(
-                      //               width: 70,
-                      //               height: 70,
-                      //               padding: EdgeInsets.all(14),
-                      //               decoration: BoxDecoration(
-                      //                   borderRadius: BorderRadius.circular(100),
-                      //                   color: Color.fromRGBO(250, 250, 250, 1)),
-                      //               child: Icon(
-                      //                 Icons.arrow_forward,
-                      //                 size: 30,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //           Text(
-                      //             "See All",
-                      //             style: TextStyle(
-                      //                 fontSize: 15,
-                      //                 color: Color.fromRGBO(65, 64, 93, 1)),
-                      //           )
-                      //         ],
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: 16,
-                      // ),
-
-                      /// Get 25% AC Service
-                      Container(
-                        width: double.infinity,
-                        height: 250,
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.white),
-                        child: Container(
-                          height: 250,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: name.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 12, vertical: 20),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(14),
-                                      color: Color.fromRGBO(234, 246, 239, 1),
                                     ),
-                                    width: 300,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                    //headline text
+                                    Text(
+                                      "Available Courses",
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromRGBO(23, 43, 77, 1),
+                                      ),
+                                    ),
+
+                                    /// walaa Edit see all Active
+                                    Container(
+                                      width: 106,
+                                      height: 33,
+                                      child: RawMaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(100)),
+                                        fillColor: Color.fromRGBO(255, 255, 255, 1),
+                                        onPressed: () {},
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              "CCIT Center  ",
+                                              "See All ",
                                               style: TextStyle(
                                                 fontSize: 15,
-                                                color:
-                                                    Color.fromRGBO(51, 56, 63, 1),
+                                                color: Color.fromRGBO(111, 118, 126, 1),
                                               ),
                                             ),
                                             Icon(
-                                              Icons.error,
-                                              color: Color.fromRGBO(51, 56, 63, 1),
+                                              Icons.keyboard_arrow_right,
+                                              color: Color.fromRGBO(111, 118, 126, 1),
                                               size: 20,
                                             )
                                           ],
                                         ),
-                                        Text(
-                                          'Get 25%',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(26, 29, 31, 1),
-                                              fontSize: 48,
-                                              fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+
+                                ///walaa Edit All Categories Photos
+
+                                Container(
+                                  height: 220,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: Categorise.length,
+                                      itemBuilder: (BuildContext context, int index) {
+                                        return Container(
+                                          padding: EdgeInsets.all(5),
+                                          height: 200,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(14),
+                                                  color:
+                                                      Color.fromRGBO(236, 234, 246, 1),
+                                                ),
+                                                width: 170,
+                                                height: 180,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(14),
+                                                  child: Image.asset(
+                                                    Categorise[index],
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                Categorise[index],
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+
+                          /// All Categories
+                          // Container(
+                          //   width: double.infinity,
+                          //   height: 150,
+                          //   padding: EdgeInsets.all(16),
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(8),
+                          //       color: Colors.white),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //     children: [
+                          //       Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         children: [
+                          //           GestureDetector(
+                          //             onTap: () {
+                          //               Navigator.pushReplacement(
+                          //                   context,
+                          //                   MaterialPageRoute(
+                          //                       builder: (context) =>
+                          //                           SubCategoriesScreen()));
+                          //             },
+                          //             child: Container(
+                          //               width: 70,
+                          //               height: 70,
+                          //               padding: EdgeInsets.all(14),
+                          //               decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(100),
+                          //                   color: Color.fromRGBO(255, 188, 153, 1)),
+                          //               child: Image.asset(
+                          //                 "assets/images/AC.png",
+                          //                 fit: BoxFit.fitWidth,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           Text(
+                          //             "AC Repair",
+                          //             style: TextStyle(
+                          //                 fontSize: 15,
+                          //                 color: Color.fromRGBO(65, 64, 93, 1)),
+                          //           )
+                          //         ],
+                          //       ),
+                          //       Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         children: [
+                          //           GestureDetector(
+                          //             onTap: () {},
+                          //             child: Container(
+                          //               width: 70,
+                          //               height: 70,
+                          //               padding: EdgeInsets.all(14),
+                          //               decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(100),
+                          //                   color: Color.fromRGBO(202, 189, 255, 1)),
+                          //               child: Image.asset(
+                          //                 "assets/images/Beauty.png",
+                          //                 fit: BoxFit.fitWidth,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           Text(
+                          //             "Beauty",
+                          //             style: TextStyle(
+                          //                 fontSize: 15,
+                          //                 color: Color.fromRGBO(65, 64, 93, 1)),
+                          //           )
+                          //         ],
+                          //       ),
+                          //       Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         children: [
+                          //           GestureDetector(
+                          //             onTap: () {
+                          //               Navigator.pushReplacement(
+                          //                   context,
+                          //                   MaterialPageRoute(
+                          //                       builder: (context) =>
+                          //                           SubCategoriesScreen()));
+                          //             },
+                          //             child: Container(
+                          //               width: 70,
+                          //               height: 70,
+                          //               padding: EdgeInsets.all(14),
+                          //               decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(100),
+                          //                   color: Color.fromRGBO(177, 229, 252, 1)),
+                          //               child: Image.asset(
+                          //                 "assets/images/Appliance.png",
+                          //                 fit: BoxFit.fitWidth,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           Text(
+                          //             "Appliance",
+                          //             style: TextStyle(
+                          //                 fontSize: 15,
+                          //                 color: Color.fromRGBO(65, 64, 93, 1)),
+                          //           )
+                          //         ],
+                          //       ),
+                          //       Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         children: [
+                          //           GestureDetector(
+                          //             onTap: () {
+                          //               print("222222654684");
+                          //               Navigator.pushReplacement(
+                          //                   context,
+                          //                   MaterialPageRoute(
+                          //                       builder: (context) => CategoriesScreen()));
+                          //             },
+                          //             child: Container(
+                          //               width: 70,
+                          //               height: 70,
+                          //               padding: EdgeInsets.all(14),
+                          //               decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(100),
+                          //                   color: Color.fromRGBO(250, 250, 250, 1)),
+                          //               child: Icon(
+                          //                 Icons.arrow_forward,
+                          //                 size: 30,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //           Text(
+                          //             "See All",
+                          //             style: TextStyle(
+                          //                 fontSize: 15,
+                          //                 color: Color.fromRGBO(65, 64, 93, 1)),
+                          //           )
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 16,
+                          // ),
+
+                          /// Get 25% AC Service
+                          Container(
+                            width: double.infinity,
+                            height: 250,
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white),
+                            child: Container(
+                              height: 250,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: name.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 20),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(14),
+                                          color: Color.fromRGBO(234, 246, 239, 1),
                                         ),
-                                        Container(
-                                          width: 106,
-                                          height: 33,
-                                          child: RawMaterialButton(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(100)),
-                                            fillColor:
-                                                Color.fromRGBO(255, 255, 255, 1),
-                                            onPressed: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          SubCategoriesScreen()));
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                        width: 300,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
                                               children: [
                                                 Text(
-                                                  "Book now! ",
+                                                  "CCIT Center  ",
                                                   style: TextStyle(
                                                     fontSize: 15,
-                                                    color: Color.fromRGBO(
-                                                        51, 56, 63, 1),
+                                                    color:
+                                                        Color.fromRGBO(51, 56, 63, 1),
                                                   ),
                                                 ),
                                                 Icon(
-                                                  Icons.keyboard_arrow_right,
-                                                  color:
-                                                      Color.fromRGBO(51, 56, 63, 1),
+                                                  Icons.error,
+                                                  color: Color.fromRGBO(51, 56, 63, 1),
                                                   size: 20,
                                                 )
                                               ],
                                             ),
-                                          ),
+                                            Text(
+                                              'Get 25%',
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(26, 29, 31, 1),
+                                                  fontSize: 48,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Container(
+                                              width: 106,
+                                              height: 33,
+                                              child: RawMaterialButton(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(100)),
+                                                fillColor:
+                                                    Color.fromRGBO(255, 255, 255, 1),
+                                                onPressed: () {
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              SubCategoriesScreen()));
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "Book now! ",
+                                                      style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Color.fromRGBO(
+                                                            51, 56, 63, 1),
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.keyboard_arrow_right,
+                                                      color:
+                                                          Color.fromRGBO(51, 56, 63, 1),
+                                                      size: 20,
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
 
 
-                      /// Get 25% Appliance Repair
-                      // Container(
-                      //   width: double.infinity,
-                      //   height: 250,
-                      //   padding: EdgeInsets.all(16),
-                      //   decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(8),
-                      //       color: Colors.white),
-                      //   child: Container(
-                      //     height: 250,
-                      //     child: ListView.builder(
-                      //         scrollDirection: Axis.horizontal,
-                      //         itemCount: name.length,
-                      //         itemBuilder: (BuildContext context, int index) {
-                      //           return Padding(
-                      //             padding: const EdgeInsets.all(8.0),
-                      //             child: Container(
-                      //               decoration: BoxDecoration(
-                      //                 borderRadius: BorderRadius.circular(14),
-                      //                 color: Color.fromRGBO(236, 234, 246, 1),
-                      //               ),
-                      //               width: 300,
-                      //               child: Stack(
-                      //                 children: [
-                      //                   Positioned(
-                      //                     right: 0,
-                      //                     bottom: 0,
-                      //                     child: Container(
-                      //                       width: 160,
-                      //                       height: 180,
-                      //                       child: Image.asset(
-                      //                         "assets/images/Washer.png",
-                      //                         fit: BoxFit.fitHeight,
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                   Positioned(
-                      //                     top: 30,
-                      //                     left: 20,
-                      //                     child: Row(
-                      //                       children: [
-                      //                         Text(
-                      //                           "Offer AC Service ",
-                      //                           style: TextStyle(
-                      //                             fontSize: 15,
-                      //                             color: Color.fromRGBO(51, 56, 63, 1),
-                      //                           ),
-                      //                         ),
-                      //                         Icon(
-                      //                           Icons.error,
-                      //                           color: Color.fromRGBO(51, 56, 63, 1),
-                      //                           size: 20,
-                      //                         )
-                      //                       ],
-                      //                     ),
-                      //                   ),
-                      //                   Positioned(
-                      //                     top: 55,
-                      //                     left: 20,
-                      //                     child: Text(
-                      //                       'Get 25%',
-                      //                       style: TextStyle(
-                      //                           color: Color.fromRGBO(26, 29, 31, 1),
-                      //                           fontSize: 48,
-                      //                           fontWeight: FontWeight.bold),
-                      //                     ),
-                      //                   ),
-                      //                   Positioned(
-                      //                     top: 120,
-                      //                     left: 20,
-                      //                     child: Container(
-                      //                       width: 106,
-                      //                       height: 33,
-                      //                       child: RawMaterialButton(
-                      //                         shape: RoundedRectangleBorder(
-                      //                             borderRadius:
-                      //                                 BorderRadius.circular(100)),
-                      //                         fillColor:
-                      //                             Color.fromRGBO(255, 255, 255, 1),
-                      //                         onPressed: () {},
-                      //                         child: Row(
-                      //                           mainAxisAlignment:
-                      //                               MainAxisAlignment.center,
-                      //                           children: [
-                      //                             Text(
-                      //                               "Grab Offer ",
-                      //                               style: TextStyle(
-                      //                                 fontSize: 15,
-                      //                                 color: Color.fromRGBO(
-                      //                                     164, 146, 235, 1),
-                      //                               ),
-                      //                             ),
-                      //                             Icon(
-                      //                               Icons.keyboard_arrow_right,
-                      //                               color:
-                      //                                   Color.fromRGBO(51, 56, 63, 1),
-                      //                               size: 20,
-                      //                             )
-                      //                           ],
-                      //                         ),
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                 ],
-                      //               ),
-                      //             ),
-                      //           );
-                      //         }),
-                      //   ),
-                      // ),
-                    ],
+                          /// Get 25% Appliance Repair
+                          // Container(
+                          //   width: double.infinity,
+                          //   height: 250,
+                          //   padding: EdgeInsets.all(16),
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(8),
+                          //       color: Colors.white),
+                          //   child: Container(
+                          //     height: 250,
+                          //     child: ListView.builder(
+                          //         scrollDirection: Axis.horizontal,
+                          //         itemCount: name.length,
+                          //         itemBuilder: (BuildContext context, int index) {
+                          //           return Padding(
+                          //             padding: const EdgeInsets.all(8.0),
+                          //             child: Container(
+                          //               decoration: BoxDecoration(
+                          //                 borderRadius: BorderRadius.circular(14),
+                          //                 color: Color.fromRGBO(236, 234, 246, 1),
+                          //               ),
+                          //               width: 300,
+                          //               child: Stack(
+                          //                 children: [
+                          //                   Positioned(
+                          //                     right: 0,
+                          //                     bottom: 0,
+                          //                     child: Container(
+                          //                       width: 160,
+                          //                       height: 180,
+                          //                       child: Image.asset(
+                          //                         "assets/images/Washer.png",
+                          //                         fit: BoxFit.fitHeight,
+                          //                       ),
+                          //                     ),
+                          //                   ),
+                          //                   Positioned(
+                          //                     top: 30,
+                          //                     left: 20,
+                          //                     child: Row(
+                          //                       children: [
+                          //                         Text(
+                          //                           "Offer AC Service ",
+                          //                           style: TextStyle(
+                          //                             fontSize: 15,
+                          //                             color: Color.fromRGBO(51, 56, 63, 1),
+                          //                           ),
+                          //                         ),
+                          //                         Icon(
+                          //                           Icons.error,
+                          //                           color: Color.fromRGBO(51, 56, 63, 1),
+                          //                           size: 20,
+                          //                         )
+                          //                       ],
+                          //                     ),
+                          //                   ),
+                          //                   Positioned(
+                          //                     top: 55,
+                          //                     left: 20,
+                          //                     child: Text(
+                          //                       'Get 25%',
+                          //                       style: TextStyle(
+                          //                           color: Color.fromRGBO(26, 29, 31, 1),
+                          //                           fontSize: 48,
+                          //                           fontWeight: FontWeight.bold),
+                          //                     ),
+                          //                   ),
+                          //                   Positioned(
+                          //                     top: 120,
+                          //                     left: 20,
+                          //                     child: Container(
+                          //                       width: 106,
+                          //                       height: 33,
+                          //                       child: RawMaterialButton(
+                          //                         shape: RoundedRectangleBorder(
+                          //                             borderRadius:
+                          //                                 BorderRadius.circular(100)),
+                          //                         fillColor:
+                          //                             Color.fromRGBO(255, 255, 255, 1),
+                          //                         onPressed: () {},
+                          //                         child: Row(
+                          //                           mainAxisAlignment:
+                          //                               MainAxisAlignment.center,
+                          //                           children: [
+                          //                             Text(
+                          //                               "Grab Offer ",
+                          //                               style: TextStyle(
+                          //                                 fontSize: 15,
+                          //                                 color: Color.fromRGBO(
+                          //                                     164, 146, 235, 1),
+                          //                               ),
+                          //                             ),
+                          //                             Icon(
+                          //                               Icons.keyboard_arrow_right,
+                          //                               color:
+                          //                                   Color.fromRGBO(51, 56, 63, 1),
+                          //                               size: 20,
+                          //                             )
+                          //                           ],
+                          //                         ),
+                          //                       ),
+                          //                     ),
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ),
+                          //           );
+                          //         }),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Container(
-            height: 220,
-            width: 250,
-            child: FutureBuilder(
-              future: getCourseIDs(),
-              builder: (context, snapshot) {
-                return ListView.builder(scrollDirection: Axis.vertical,
-                  itemCount: courseIDs.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        title: GetCourseNames(
-                          documentId: courseIDs[index],
-                        ),
-                        tileColor: Colors.deepOrangeAccent,
-                      ),
+              Container(
+                height: 320,
+                width: 250,
+
+                child: FutureBuilder(
+                  future: getCourseIDs(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(scrollDirection: Axis.vertical,
+                      itemCount: courseIDs.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                            title: GetCourseNames(
+                              documentId: courseIDs[index],
+                            ),
+                            tileColor: Colors.deepOrangeAccent,
+                          ),
+                        );
+                      },
                     );
                   },
-                );
-              },
-            ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-        ],
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         indexLate: 0,
