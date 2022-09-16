@@ -118,10 +118,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -164,10 +164,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -210,10 +210,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -256,10 +256,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -302,10 +302,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -348,10 +348,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       maxLength: 1,
                       textAlign: TextAlign.center,
                       buildCounter: (BuildContext context,
-                              {int? currentLength,
-                              int? maxLength,
-                              bool? isFocused}) =>
-                          null,
+                          {int? currentLength,
+                            int? maxLength,
+                            bool? isFocused}) =>
+                      null,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
                         if (value != '') {
@@ -537,9 +537,18 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     if (!currentUserInfo.exists) {
       await db.doc(id).set({
         "id": id,
-        "name": "",
+        "first name": "",
+        "father name": "",
+        "last name": "",
+        "nationality": "",
+        "address": "",
+        "education": "",
+        "email": "",
+        "gender": "",
+        "permission": "",
         "age": "",
         "phone": widget.userPhone,
+        "date": "",
       });
       Navigator.pushReplacement(
         context,
@@ -551,8 +560,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         ),
       );
     } else {
-      //بعات الايدي لصفحة الهوم
-      // هون فرش مخي نكمل في الحلقة القادمة
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

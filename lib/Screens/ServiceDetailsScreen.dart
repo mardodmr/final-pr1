@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sized_box_for_whitespace, non_constant_identifier_names
 
+import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +74,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                 right: 0,
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 40, bottom: 20, right: 20),
+                  const EdgeInsets.only(left: 40, bottom: 20, right: 20),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -158,7 +159,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SubCategoriesScreen()));
+                            builder: (context) => HomeScreen()));
                   },
                 ),
               ),
@@ -278,7 +279,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                       borderRadius: BorderRadius.circular(18),
                                       color: Colors.white),
                                   child: Icon(
-                                    Icons.school_outlined,
+                                    Icons.class_outlined,
                                     size: 30,
                                     color: Color.fromRGBO(209, 211, 212, 1),
                                   ),
@@ -342,7 +343,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                              Color.fromRGBO(209, 211, 212, 1),
+                                          Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -429,7 +430,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                              Color.fromRGBO(209, 211, 212, 1),
+                                          Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -586,31 +587,31 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          // Container(
+                          //   width: 168,
+                          //   height: 48,
+                          //   child: RawMaterialButton(
+                          //     shape: RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(10)),
+                          //     fillColor: Color.fromRGBO(239, 239, 239, 1),
+                          //     onPressed: () {},
+                          //     child: Text(
+                          //       "Save Draft",
+                          //       style: TextStyle(
+                          //         fontSize: 15,
+                          //         fontWeight: FontWeight.w700,
+                          //         color: Color.fromRGBO(26, 27, 45, 1),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           Container(
-                            width: 168,
-                            height: 48,
+                            width: 250,
+                            height: 50,
                             child: RawMaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              fillColor: Color.fromRGBO(239, 239, 239, 1),
-                              onPressed: () {},
-                              child: Text(
-                                "Save Draft",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color.fromRGBO(26, 27, 45, 1),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 168,
-                            height: 48,
-                            child: RawMaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              fillColor: Color.fromRGBO(26, 27, 45, 1),
+                              fillColor: Color.alphaBlend(Colors.red, Colors.black),
                               onPressed: () {
                                 Navigator.pushReplacement(
                                   context,
@@ -620,9 +621,9 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                 );
                               },
                               child: Text(
-                                "Book Now",
+                                "ENROLL",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 19,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
                                 ),

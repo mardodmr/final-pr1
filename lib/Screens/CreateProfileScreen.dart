@@ -182,11 +182,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.text,
-                    validator: (value){
-                      if(value!.isEmpty || RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)){
-                        return "Enter a valid address";
-                      }
-                    },
+                  validator: (value){
+                    if(value!.isEmpty || RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)){
+                      return "Enter a valid address";
+                    }
+                  },
                   controller: _address,
                   onChanged: (val) {},
                   decoration: kTextFieldDecoration.copyWith(
@@ -352,7 +352,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       if(formKey.currentState!.validate()){
                         final snackBar = SnackBar(content: Text('Submitting your data...'));
 
-                       // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
+                        // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
                         _setUserData();
                         Navigator.pushReplacement(
                           context,
@@ -389,6 +389,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
       "email": _email,
       "gender": _character,
       "permission": "user",
+      "age": /*add a date picker*/"",
+      "date": /*add creation date*/ "",
     });
   }
 }
