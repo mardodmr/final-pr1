@@ -117,7 +117,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BookingScreen()));
+                              builder: (context) => upComingScreen()));
 
                     });
                   }),

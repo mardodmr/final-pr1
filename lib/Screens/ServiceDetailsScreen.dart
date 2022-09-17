@@ -615,7 +615,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => BookingScreen(),
+                                    builder: (context) => upComingScreen(),
                                   ),
                                 );
                               },
