@@ -27,14 +27,11 @@ class HomeScreen extends StatefulWidget {
 
   HomeScreen({this.userId = ""});
 
-
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final TextEditingController _phoneController = TextEditingController();
   final List<String> name = [
@@ -73,9 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection('courses')
         .get()
         .then((snapshot) => snapshot.docs.forEach((document) {
-      print(document.reference);
-      courseIDs.add(document.reference.id);
-    }));
+              print(document.reference);
+              courseIDs.add(document.reference.id);
+            }));
   }
 
   @override
@@ -133,22 +130,24 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       drawer: Drawer(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric( vertical: 10),
           color: Color.fromRGBO(41, 48, 60, 1),
           child: ListView(
             children: [
               GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfileScreen(),
-                    ),
-                  );
-                },
+                // onTap: () {
+                //   Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => ProfileScreen(),
+                //     ),
+                //   );
+                // },
                 child: ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
+
+                    child: Image.asset("assets/images/khaled.png",fit: BoxFit.contain,),
                   ),
                   title: Text(
                     "Ahmad Jalal",
@@ -157,9 +156,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
-              DrawerListWidgets(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: DrawerListWidgets(),
+              ),
               // SizedBox(
               //   height: 10,
               // ),
@@ -185,185 +187,237 @@ class _HomeScreenState extends State<HomeScreen> {
               //     ],
               //   ),
               // ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.pushReplacement(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => MapScreen(),
+              //       ),
+              //     );
+              //   },
+              //   child: Container(
+              //     width: double.infinity,
+              //     padding: EdgeInsets.only(
+              //       left: 10,
+              //     ),
+              //     height: 48,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //     child: Row(
+              //       children: [
+              //         Icon(
+              //           Icons.location_on_outlined,
+              //           color: Colors.white,
+              //         ),
+              //         Text(
+              //           "  Address",
+              //           style: TextStyle(
+              //               color:
+              //                   Colors.white, // Color.fromRGBO(41, 48, 60, 1),
+              //               fontSize: 15,
+              //               fontWeight: FontWeight.w600),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     Navigator.pushReplacement(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => NotificationEmptyScreen(),
+              //       ),
+              //     );
+              //   },
+              //   child: Container(
+              //     width: double.infinity,
+              //     height: 48,
+              //     padding: EdgeInsets.only(
+              //       left: 10,
+              //     ),
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //     child: Row(
+              //       children: [
+              //         Icon(
+              //           Icons.notifications,
+              //           color: Colors.white,
+              //         ),
+              //         Text(
+              //           "  Notification",
+              //           style: TextStyle(
+              //               color:
+              //                   Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+              //               fontSize: 15,
+              //               fontWeight: FontWeight.w600),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              // Container(
+              //   width: double.infinity,
+              //   height: 48,
+              //   padding: EdgeInsets.only(
+              //     left: 10,
+              //   ),
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(8),
+              //   ),
+              //   child: Row(
+              //     children: [
+              //       Icon(
+              //         Icons.local_offer_outlined,
+              //         color: Colors.white,
+              //       ),
+              //       Text(
+              //         "  Offers",
+              //         style: TextStyle(
+              //             color: Colors.white, // Color.fromRGBO(41, 48, 60, 1),
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w600),
+              //       )
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MapScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(
-                    left: 10,
-                  ),
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReferAFriendScreen(),
                       ),
-                      Text(
-                        "  Address",
-                        style: TextStyle(
-                            color:
-                                Colors.white, // Color.fromRGBO(41, 48, 60, 1),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 48,
+                    padding: EdgeInsets.only(
+                      left: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.people_alt_outlined,
+                          color: Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                        ),
+                        Text(
+                          "  Refer a Friend",
+                          style: TextStyle(
+                              color:
+                                  Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NotificationEmptyScreen(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    width: double.infinity,
+                    height: 48,
+                    padding: EdgeInsets.only(
+                      left: 10,
                     ),
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 48,
-                  padding: EdgeInsets.only(
-                    left: 10,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.call_outlined,
+                          color: Color.fromRGBO(41, 48, 60, 1),
+                        ),
+                        Text(
+                          "  Support",
+                          style: TextStyle(
+                              color: Color.fromRGBO(41, 48, 60, 1),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.notifications,
-                        color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignInScreen(),
                       ),
-                      Text(
-                        "  Notification",
-                        style: TextStyle(
-                            color:
-                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: double.infinity,
-                height: 48,
-                padding: EdgeInsets.only(
-                  left: 10,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.local_offer_outlined,
-                      color: Colors.white,
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 48,
+                    padding: EdgeInsets.only(
+                      left: 10,
                     ),
-                    Text(
-                      "  Offers",
-                      style: TextStyle(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.login,
                           color: Colors.white, // Color.fromRGBO(41, 48, 60, 1),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ReferAFriendScreen(),
+                        ),
+                        Text(
+                          "  Logout",
+                          style: TextStyle(
+                              color: Colors.white,
+                              // Color.fromRGBO(41, 48, 60, 1),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
                     ),
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 48,
-                  padding: EdgeInsets.only(
-                    left: 10,
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.people_alt_outlined,
-                        color: Colors.white, //Color.fromRGBO(41, 48, 60, 1),
-                      ),
-                      Text(
-                        "  Refer a Friend",
-                        style: TextStyle(
-                            color:
-                                Colors.white, //Color.fromRGBO(41, 48, 60, 1),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: double.infinity,
-                height: 48,
-                padding: EdgeInsets.only(
-                  left: 10,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.call_outlined,
-                      color: Colors.white, // Color.fromRGBO(41, 48, 60, 1),
-                    ),
-                    Text(
-                      "  Support",
-                      style: TextStyle(
-                          color: Colors.white, // Color.fromRGBO(41, 48, 60, 1),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
                 ),
               ),
               SizedBox(
                 height: 200,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
               // Container(
               //   width: double.infinity,
               //   height: 48,
@@ -436,17 +490,24 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       appBar: AppBar(
-        actions: [GestureDetector(
-            onTap: (){
-              FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignInScreen(),
-                ),
-              );
-            },
-            child: Icon(Icons.logout))],
+        actions: [
+          // GestureDetector(
+          //   onTap: () {
+          //     FirebaseAuth.instance.signOut();
+          //     Navigator.pushReplacement(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => SignInScreen(),
+          //       ),
+          //     );
+          //   },
+          //   child: Icon(
+          //     Icons.logout,
+          //     color: Colors.red,
+          //     size: 36,
+          //   ),
+          // ),
+        ],
         elevation: 0,
         toolbarHeight: 60,
         backgroundColor: Colors.white,
@@ -516,7 +577,8 @@ class _HomeScreenState extends State<HomeScreen> {
               hintStyle: TextStyle()),
         ),
       ),
-      body: Container(width: double.infinity,
+      body: Container(
+        width: double.infinity,
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(10),
@@ -537,7 +599,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Center(
                         child: AutoSizeText(
                           ///get() the user name form database
-                          "Hello " + /*user.firstname*/  " 👋",
+                          "Hello " + /*user.firstname*/ " 👋",
                           style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -693,7 +755,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   ),
                 // ),
 
-
                 /// All Categories
                 // Container(
                 //   width: double.infinity,
@@ -838,7 +899,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: double.infinity,
                   height: 500,
-
                   padding: EdgeInsets.all(30),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -851,16 +911,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(height: 170,
+                            child: Container(
+                              height: 170,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14),
-                                color: Colors.red,//Color.fromRGBO(234, 246, 239, 1),
+                                color: Colors
+                                    .red, //Color.fromRGBO(234, 246, 239, 1),
                               ),
                               width: 300,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
@@ -893,7 +956,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(100)),
-                                      fillColor: Color.fromRGBO(255, 255, 255, 1),
+                                      fillColor:
+                                          Color.fromRGBO(255, 255, 255, 1),
                                       onPressed: () {
                                         Navigator.pushReplacement(
                                             context,
@@ -915,7 +979,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           Icon(
                                             Icons.keyboard_arrow_right,
-                                            color: Color.fromRGBO(51, 56, 63, 1),
+                                            color:
+                                                Color.fromRGBO(51, 56, 63, 1),
                                             size: 20,
                                           )
                                         ],
@@ -1056,6 +1121,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   GestureDetector DrawerListWidgets() {
     return GestureDetector(
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileScreen(),
+          ),
+        );
+      },
       child: Container(
         padding: EdgeInsets.only(
           left: 10,
@@ -1068,7 +1141,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Icon(Icons.event),
             Text(
-              "  Calendar",
+              "  Edit Profile",
               style: TextStyle(
                   color: Color.fromRGBO(41, 48, 60, 1),
                   fontSize: 15,
