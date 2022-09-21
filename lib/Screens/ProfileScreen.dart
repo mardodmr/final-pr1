@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final firebaseUser = FirebaseAuth.instance.currentUser!;
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(firebaseUser.uid)
+        .doc("6O9OQVO0R1RKMa8RjjcOo81jysc2")
         .get()
         .then((value) => {
               (myemail = ['email'].toString()),
@@ -47,11 +47,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   _updateUserData() async {
     final firebaseUser = FirebaseAuth.instance.currentUser!;
-    await db.doc(firebaseUser.uid).update({
-      "address": _address,
-      "email": _email,
-      "phone": _phoneController
-    });
+    await db.doc(firebaseUser.uid).update(
+        {"address": _address, "email": _email, "phone": _phoneController});
   }
 
   @override
@@ -59,7 +56,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // TODO: implement initState
     super.initState();
     _fetchData();
+    print("=========================================");
     print(myemail);
+    print(myphone);
+    print(myaddress);
+    print("=========================================");
   }
 
   @override
