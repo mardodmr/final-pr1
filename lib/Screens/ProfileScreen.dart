@@ -16,13 +16,13 @@ class ProfileScreen extends StatefulWidget {
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
-
 }
-enum SingingCharacter { male, female }
-class _ProfileScreenState extends State<ProfileScreen> {
 
+enum SingingCharacter { male, female }
+
+class _ProfileScreenState extends State<ProfileScreen> {
   String countryCode = "+1";
-  final formKey= GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   var db = FirebaseFirestore.instance.collection('users');
   String myemail = "";
   String myphone = "";
@@ -32,13 +32,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  _fetchData() async{
+  _fetchData() async {
     final firebaseUser = FirebaseAuth.instance.currentUser!;
-    await FirebaseFirestore.instance.collection('users')
-        .doc(firebaseUser.uid).get().then((value) => {myemail: 'email', myphone: 'phone', myaddress: 'address'});
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .get()
+        .then((value) => {
+              (myemail = ['email'].toString()),
+              (myaddress = ['address'].toString()),
+              (myphone = ['phone'].toString())
+            });
   }
 
+  _updateUserData() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser!;
+    await db.doc(firebaseUser.uid).update({
+      "address": _address,
+      "email": _email,
+      "phone": _phoneController
+    });
+  }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchData();
+    print(myemail);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +108,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       fillColor: Theme.of(context).primaryColor,
                       onPressed: () {
+                        _updateUserData();
                         // save changes methode
                         // navigate to home and refresh
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()),
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
                         );
-
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +144,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-
                   ),
                   title: Text(
                     "Ahmad Jalal",
@@ -148,15 +168,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Text(
                         "Address",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 8,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.text,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Enter a valid address";
                           }
                         },
@@ -169,21 +190,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         height: 8,
                       ),
-
                       SizedBox(
                         height: 8,
                       ),
                       Text(
                         "Phone Number",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 8,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.text,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Enter a valid phone number";
                           }
                         },
@@ -198,28 +219,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Text(
                         "Email",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 8,
                       ),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        validator: (value){
-                          if(!validator.email(value!)){
+                        validator: (value) {
+                          if (!validator.email(value!)) {
                             return "Please enter a valid email";
                           }
                         },
                         onChanged: (val) {},
                         controller: _email,
                         decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Email',
+                          hintText: myemail,
                         ),
                       ),
                       SizedBox(
                         height: 8,
                       ),
-
                       SizedBox(
                         height: 30,
                       ),
@@ -393,7 +414,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
-
   }
-
 }

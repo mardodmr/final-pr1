@@ -9,6 +9,7 @@ import 'package:final_pr1/Screens/AddCourseScreen.dart';
 import 'package:final_pr1/Screens/CreateProfileScreen.dart';
 import 'package:final_pr1/Screens/MapScreen.dart';
 import 'package:final_pr1/Screens/NotificationEmptyScreen.dart';
+import 'package:final_pr1/Screens/ProfileScreen.dart';
 import 'package:final_pr1/Screens/ServiceDetailsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          HomeScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          ProfileScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
