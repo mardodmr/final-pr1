@@ -69,10 +69,22 @@ class _HomeScreenState extends State<HomeScreen> {
     await FirebaseFirestore.instance
         .collection('courses')
         .get()
-        .then((snapshot) => snapshot.docs.forEach((document) {
-              print(document.reference);
-              courseIDs.add(document.reference.id);
-            }));
+        .then((snapshot) =>
+        snapshot.docs.forEach((document) {
+          print(document.reference);
+          print("111111111111114444432353452345");
+          courseIDs.add(document.reference.id);
+        }));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+//    BottomNavBar(indexLate: 0);
+    getCourseIDs();
+    print("0987098709870987");
+    super.initState();
   }
 
   @override
@@ -96,7 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           items: imageList
               .map(
-                (imagePath) => GestureDetector(
+                (imagePath) =>
+                GestureDetector(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Stack(
@@ -113,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-              )
+          )
               .toList()),
     );
 
@@ -130,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       drawer: Drawer(
         child: Container(
-          padding: EdgeInsets.symmetric( vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 10),
           color: Color.fromRGBO(41, 48, 60, 1),
           child: ListView(
             children: [
@@ -146,8 +159,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListTile(
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-
-                    child: Image.asset("assets/images/khaled.png",fit: BoxFit.contain,),
+                    child: Image.asset(
+                      "assets/images/khaled.png",
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   title: Text(
                     "Ahmad Jalal",
@@ -326,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           "  Refer a Friend",
                           style: TextStyle(
                               color:
-                                  Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                              Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                               fontSize: 15,
                               fontWeight: FontWeight.w600),
                         )
@@ -341,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: (){},
+                  onTap: () {},
                   child: Container(
                     width: double.infinity,
                     height: 48,
@@ -598,6 +613,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Center(
                         child: AutoSizeText(
+
                           ///get() the user name form database
                           "Hello " + /*user.firstname*/ " 👋",
                           style: TextStyle(
@@ -905,92 +921,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white),
                   child: Container(
                     height: 300,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: name.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 170,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 20),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14),
-                                color: Colors
-                                    .red, //Color.fromRGBO(234, 246, 239, 1),
-                              ),
-                              width: 300,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "CCIT Center  ",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Color.fromRGBO(51, 56, 63, 1),
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.error,
-                                        color: Color.fromRGBO(51, 56, 63, 1),
-                                        size: 20,
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    'Get 25%',
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(26, 29, 31, 1),
-                                        fontSize: 48,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Container(
-                                    width: 106,
-                                    height: 33,
-                                    child: RawMaterialButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
-                                      fillColor:
-                                          Color.fromRGBO(255, 255, 255, 1),
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SubCategoriesScreen()));
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Book now! ",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color:
-                                                  Color.fromRGBO(51, 56, 63, 1),
-                                            ),
-                                          ),
-                                          Icon(
-                                            Icons.keyboard_arrow_right,
-                                            color:
-                                                Color.fromRGBO(51, 56, 63, 1),
-                                            size: 20,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                    //TODO
+                    child: FutureBuilder(
+                        future: getCourseIDs(),
+                        builder: (context, snapshot) {
+
+                          return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: courseIDs.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                // String textTest = GetCourseNames(
+                                //   documentId: courseIDs[index]
+                                // );
+                                return GetCourseNames(documentId: courseIDs[index],);
+                              });
                         }),
                   ),
                 ),

@@ -148,6 +148,7 @@ class _upComingScreenState extends State<upComingScreen> {
                               borderRadius: BorderRadius.circular(10)),
                           fillColor: Color.fromRGBO(26, 27, 45, 1),
                           onPressed: () {
+                            BottomNavBar(indexLate: 0);
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -174,7 +175,7 @@ class _upComingScreenState extends State<upComingScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavBar(indexLate: 1,),
+        bottomNavigationBar: BottomNavBar(indexLate: 1),
       );
     ///  ===================
     // if (selectedIndex == 1)
