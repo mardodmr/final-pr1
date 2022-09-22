@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Screens/HomeScreen.dart';
 import 'package:final_pr1/Screens/AllCategoriesScreen.dart';
 import 'Screens/OnBoardingScreen.dart';
+import 'Screens/ReferFriend.dart';
 import 'Screens/SignInScreen.dart';
 import 'Utils/ThemeConstants.dart';
 import 'screens/BookingScreen.dart';
@@ -26,6 +27,9 @@ import 'package:firebase_core/firebase_core.dart';
 
 bool firstUse = false;
 Future<void> main() async {
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  ///======================================
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterNativeSplash.removeAfter(initialization);
@@ -48,7 +52,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          ProfileScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+      ReferAFriendScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
