@@ -61,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
     // 'assets/images/Language.jpg',
   ];
 
+
+
+
   // course ids
   List<String> courseIDs = [];
 
@@ -78,16 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /// TODO
-  Future getCourseData() async {
-    final docRef = FirebaseFirestore.instance.collection("courses").doc();
-    docRef.get().then(
-    (DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    // ...
-    },
-    onError: (e) => print("Error getting document: $e"),
-    );
-  }
+
 
   @override
   void initState() {
@@ -100,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     Widget carouselSlider = new SafeArea(
       child: CarouselSlider(
@@ -946,6 +941,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // String textTest = GetCourseNames(
                                 //   documentId: courseIDs[index]
                                 // );
+                                //getter =courseIDs[index];
                                 return GetCourseNames(documentId: courseIDs[index],neededValue: "course name",);
                               });
                         }),

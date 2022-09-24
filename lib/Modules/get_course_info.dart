@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_pr1/Screens/ServiceDetailsScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/SubCategoriesScreen.dart';
@@ -85,7 +86,7 @@ class GetCourseNames extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      SubCategoriesScreen()));
+                                      ServiceDetailsScreen()));
                         },
                         child: Row(
                           mainAxisAlignment:
