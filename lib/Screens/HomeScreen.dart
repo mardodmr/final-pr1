@@ -53,12 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   final imageList = [
-    'assets/images/Electronics.jpg',
-    'assets/images/Beauty.jpg',
-    'assets/images/Painting.jpg',
-    'assets/images/Electro Repair.jpg',
-    'assets/images/Electronics.jpg',
-    'assets/images/Language.jpg',
+    'assets/images/level1_interchange.png',
+    'assets/images/intro_interchange Cropped.jpg',
+    // 'assets/images/Painting.jpg',
+    // 'assets/images/Electro Repair.jpg',
+    // 'assets/images/Electronics.jpg',
+    // 'assets/images/Language.jpg',
   ];
 
   // course ids
@@ -77,6 +77,18 @@ class _HomeScreenState extends State<HomeScreen> {
         }));
   }
 
+  /// TODO
+  Future getCourseData() async {
+    final docRef = FirebaseFirestore.instance.collection("courses").doc();
+    docRef.get().then(
+    (DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    // ...
+    },
+    onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -92,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget carouselSlider = new SafeArea(
       child: CarouselSlider(
           options: CarouselOptions(
-            height: 300,
+            height: 250,
             aspectRatio: 16 / 9,
             viewportFraction: 1,
             initialPage: 0,
@@ -603,7 +615,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   width: double.infinity,
                   height: 100,
-                  padding: EdgeInsets.all(30),
+                  padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.white),
@@ -929,11 +941,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           return ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: courseIDs.length,
+
                               itemBuilder: (BuildContext context, int index) {
                                 // String textTest = GetCourseNames(
                                 //   documentId: courseIDs[index]
                                 // );
-                                return GetCourseNames(documentId: courseIDs[index],);
+                                return GetCourseNames(documentId: courseIDs[index],neededValue: "course name",);
                               });
                         }),
                   ),

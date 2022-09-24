@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final firebaseUser = FirebaseAuth.instance.currentUser!;
     await FirebaseFirestore.instance
         .collection('users')
-        .doc("6O9OQVO0R1RKMa8RjjcOo81jysc2")
+        .doc(firebaseUser.uid)
         .get()
         .then((value) => {
               (myemail = ['email'].toString()),

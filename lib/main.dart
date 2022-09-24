@@ -18,7 +18,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Screens/HomeScreen.dart';
 import 'package:final_pr1/Screens/AllCategoriesScreen.dart';
 import 'Screens/OnBoardingScreen.dart';
-import 'Screens/ReferFriend.dart';
 import 'Screens/SignInScreen.dart';
 import 'Utils/ThemeConstants.dart';
 import 'screens/BookingScreen.dart';
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-      ReferAFriendScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          ProfileScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }

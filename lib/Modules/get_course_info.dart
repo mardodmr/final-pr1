@@ -6,8 +6,9 @@ import '../Screens/SubCategoriesScreen.dart';
 class GetCourseNames extends StatelessWidget {
 
   final String documentId;
+  final String neededValue;
 
-  GetCourseNames({required this.documentId});
+  GetCourseNames({required this.documentId, required this.neededValue});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class GetCourseNames extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('${data['course name']}',style: TextStyle(
+                        Text('${data[neededValue]}',style: TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(
                           51, 56, 63, 1),
@@ -63,7 +64,7 @@ class GetCourseNames extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'Get 25%',
+                      '${data['teacher']}',
                       style: TextStyle(
                           color:
                           Color.fromRGBO(26, 29, 31, 1),
@@ -91,7 +92,7 @@ class GetCourseNames extends StatelessWidget {
                           MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Book now! ",
+                              '${data['duration']}',
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color.fromRGBO(
