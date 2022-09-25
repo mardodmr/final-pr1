@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          AddCourseScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          HomeScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }

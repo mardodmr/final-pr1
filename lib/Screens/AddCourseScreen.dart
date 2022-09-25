@@ -186,6 +186,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                       print(NewValue);
                     });
                   }),
+              SizedBox(height: 20,),
+              ElevatedButton(onPressed: (){}, child: Text("Save"))
             ],
           ),
         ),

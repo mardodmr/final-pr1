@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_pr1/Modules/get_course_info.dart';
+import 'package:final_pr1/Screens/AddCourseScreen.dart';
 import 'package:final_pr1/Screens/ServiceDetailsScreen.dart';
 import 'package:final_pr1/Screens/SignInScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,9 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // 'assets/images/Language.jpg',
   ];
 
-
-
-
   // course ids
   List<String> courseIDs = [];
 
@@ -72,21 +70,17 @@ class _HomeScreenState extends State<HomeScreen> {
     await FirebaseFirestore.instance
         .collection('courses')
         .get()
-        .then((snapshot) =>
-        snapshot.docs.forEach((document) {
-          print(document.reference);
-          print("111111111111114444432353452345");
-          courseIDs.add(document.reference.id);
-        }));
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              print(document.reference);
+              print("111111111111114444432353452345");
+              courseIDs.add(document.reference.id);
+            }));
   }
 
   /// TODO hello username!
 
-
   @override
   void initState() {
-
-
 //    BottomNavBar(indexLate: 0);
     getCourseIDs();
     print("0987098709870987");
@@ -95,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-
   Widget build(BuildContext context) {
     Widget carouselSlider = new SafeArea(
       child: CarouselSlider(
@@ -116,8 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           items: imageList
               .map(
-                (imagePath) =>
-                GestureDetector(
+                (imagePath) => GestureDetector(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Stack(
@@ -134,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-          )
+              )
               .toList()),
     );
 
@@ -349,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           "  Refer a Friend",
                           style: TextStyle(
                               color:
-                              Colors.white, //Color.fromRGBO(41, 48, 60, 1),
+                                  Colors.white, //Color.fromRGBO(41, 48, 60, 1),
                               fontSize: 15,
                               fontWeight: FontWeight.w600),
                         )
@@ -514,22 +506,18 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: AppBar(
         actions: [
-          // GestureDetector(
-          //   onTap: () {
-          //     FirebaseAuth.instance.signOut();
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => SignInScreen(),
-          //       ),
-          //     );
-          //   },
-          //   child: Icon(
-          //     Icons.logout,
-          //     color: Colors.red,
-          //     size: 36,
-          //   ),
-          // ),
+          //Todo: mardo al عرص
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddCourseScreen()));
+            },
+            child: Icon(
+              Icons.add,
+              color: Colors.red,
+              size: 36,
+            ),
+          ),
         ],
         elevation: 0,
         toolbarHeight: 60,
@@ -621,7 +609,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Center(
                         child: AutoSizeText(
-
                           ///get() the user name form database
                           "Hello " + /*user.firstname*/ " 👋",
                           style: TextStyle(
@@ -933,17 +920,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: FutureBuilder(
                         future: getCourseIDs(),
                         builder: (context, snapshot) {
-
                           return ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: courseIDs.length,
-
                               itemBuilder: (BuildContext context, int index) {
                                 // String textTest = GetCourseNames(
                                 //   documentId: courseIDs[index]
                                 // );
                                 //getter =courseIDs[index];
-                                return GetCourseNames(documentId: courseIDs[index],neededValue: "course name",);
+                                return GetCourseNames(
+                                  documentId: courseIDs[index],
+                                  neededValue: "course name",
+                                );
                               });
                         }),
                   ),
@@ -1079,7 +1067,9 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProfileScreen(userId: widget.userId,),
+            builder: (context) => ProfileScreen(
+              userId: widget.userId,
+            ),
           ),
         );
       },

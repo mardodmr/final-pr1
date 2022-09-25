@@ -9,62 +9,78 @@ import 'BookingScreen.dart';
 import 'SubCategoriesScreen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
-
   late String thisCourseId;
   late String userId;
-  ServiceDetailsScreen({ this.thisCourseId = "", this.userId=""});
+
+  ServiceDetailsScreen({this.thisCourseId = "", this.userId = ""});
 
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
 
+String currentCourseName = "";
+String currentCourseTeacher = "";
+String currentCourseCenter = "";
+String currentCourseClass = "";
+String currentCourseDuratoin = "";
+String currentCoursePrice = "";
+
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   int Units = 0;
   int Bedrooms = 0;
-  String currentCourseName = "";
-  String currentCourseTeacher = "";
-  String currentCourseCenter ="";
-  String currentCourseClass ="";
-  String currentCourseDuratoin="";
-  String currentCoursePrice ="";
+
 
 
   //String thisCourse = "";
 
+  void setCourse(String s) {
+    currentCourseClass = s;
+    print(currentCourseClass);
+  }
 
   Future getCourseData() async {
-    final docRef = FirebaseFirestore.instance.collection("courses").doc(widget.thisCourseId);
-    docRef.get().then(
-          (DocumentSnapshot doc) {
+    await FirebaseFirestore.instance
+        .collection("courses")
+        .doc(widget.thisCourseId)
+        .get()
+        .then(
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        currentCourseName='${data['course name']}';
-        currentCourseTeacher='${data['teacher']}';
-        currentCourseCenter='${data['center']}';
-        currentCourseClass='${data['class']}';
-        currentCourseDuratoin='${data['duration']}';
-        currentCoursePrice='${data['price']}';
+        print('${data['course name']}');
+        setCourse('${data['course name']}');
+        currentCourseName = '${data['course name']}';
+        currentCourseTeacher = '${data['teacher']}';
+        currentCourseCenter = '${data['center']}';
+        currentCourseClass = '${data['class']}';
+        currentCourseDuratoin = '${data['duration']}';
+        currentCoursePrice = '${data['price']}';
       },
       onError: (e) => print("Error getting document: $e"),
     );
   }
 
-  _enrollUser () async {
+  _enrollUser() async {
+    await FirebaseFirestore.instance
+        .collection('courses')
+        .doc(widget.thisCourseId)
+        .update({"participants": FieldValue.increment(1)});
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.thisCourseId)
+        .update({
+      "registered": FieldValue.arrayUnion([widget.thisCourseId])
+    });
 
-    await FirebaseFirestore.instance.collection('courses').doc(widget.thisCourseId).update(
-        {"participants": FieldValue.increment(1)});
-    await FirebaseFirestore.instance.collection('users').doc(widget.thisCourseId).update(
-        {"registered": FieldValue.arrayUnion([widget.thisCourseId])});
     /// CHANGE MATERIAL BUTTON TO ENROLLED
     ///  TODO Walaa add course duration
-
   }
 
   @override
   void initState() {
-
-
 //    BottomNavBar(indexLate: 0);
     getCourseData();
+    print(currentCourseCenter);
+    print(currentCourseClass);
     print("0987098709870987");
     super.initState();
   }
@@ -125,7 +141,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                 right: 0,
                 child: Padding(
                   padding:
-                  const EdgeInsets.only(left: 40, bottom: 20, right: 20),
+                      const EdgeInsets.only(left: 40, bottom: 20, right: 20),
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -207,10 +223,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     size: 30,
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeScreen()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                   },
                 ),
               ),
@@ -394,7 +408,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                          Color.fromRGBO(209, 211, 212, 1),
+                                              Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -481,7 +495,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                          Color.fromRGBO(209, 211, 212, 1),
+                                              Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -662,17 +676,18 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                             child: RawMaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
-                              fillColor: Color.alphaBlend(Colors.red, Colors.black),
+                              fillColor:
+                                  Color.alphaBlend(Colors.red, Colors.black),
                               onPressed: () {
-
                                 //enroll user
-                                Text("Enrolled",
-                                style: TextStyle(
-                                  fontSize: 3,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                ),);
-
+                                Text(
+                                  "Enrolled",
+                                  style: TextStyle(
+                                    fontSize: 3,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                );
 
                                 Navigator.pushReplacement(
                                   context,
