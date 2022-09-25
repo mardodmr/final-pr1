@@ -55,7 +55,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     await FirebaseFirestore.instance.collection('users').doc(widget.thisCourseId).update(
         {"registered": FieldValue.arrayUnion([widget.thisCourseId])});
     /// CHANGE MATERIAL BUTTON TO ENROLLED
-    /// TODO add course duration
+    ///  TODO Walaa add course duration
 
   }
 

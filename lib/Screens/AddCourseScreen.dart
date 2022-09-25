@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Utils/constant.dart';
@@ -19,6 +20,13 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
   String dropdownValue = "All Categorise";
   File? image;
 
+  TextEditingController _coursename = TextEditingController();
+  TextEditingController _teacher = TextEditingController();
+  TextEditingController _price = TextEditingController();
+  TextEditingController _center = TextEditingController();
+  TextEditingController _duration = TextEditingController();
+  //TextEditingController _category = TextEditingController();
+
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -30,7 +38,21 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       print("Field to pick Image $e");
     }
   }
-  /// TODO onpressed function
+  /// TODO  Walaa  btn + ( this )onpressed function
+  _setCourseData() async {
+
+
+    await FirebaseFirestore.instance.collection('courses').add({
+      "course name": _coursename.text,
+      "teacher": _teacher.text,
+      "price": _price.text,
+      "duration": _duration.text,
+      "category": dropdownValue,
+      "center": _center.text,
+
+    });
+  }
+  ///
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +96,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               const Text("* Course Name:"),
               TextFormField(
                 keyboardType: TextInputType.text,
+                controller: _coursename,
                 onChanged: (val) {},
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Course Name',
@@ -85,6 +108,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
+                controller: _teacher,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Instructor Name',
                 ),
@@ -95,6 +119,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
+                controller: _price,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Course Cost',
                 ),
@@ -105,6 +130,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
+                controller: _center,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Center Name',
                 ),
@@ -116,6 +142,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
+                controller: _duration,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Course Duration',
                 ),

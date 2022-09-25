@@ -44,6 +44,8 @@ Future initialization(BuildContext? context) async {
   await Future.delayed(Duration(seconds: 2));
 }
 
+
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          ServiceDetailsScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+          AddCourseScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }
