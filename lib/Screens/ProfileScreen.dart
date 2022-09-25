@@ -14,6 +14,9 @@ import 'TextFieldWidget.dart';
 class ProfileScreen extends StatefulWidget {
   //const ProfileScreen({Key? key}) : super(key: key);
 
+  late String userId;
+  ProfileScreen({ this.userId = ""});
+  
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -32,11 +35,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  _fetchData() async {
-    final firebaseUser = FirebaseAuth.instance.currentUser!;
+  _fetchData() async { /// TODO
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(firebaseUser.uid)
+        .doc(widget.userId)
         .get()
         .then((value) => {
               (myemail = ['email'].toString()),
@@ -46,8 +48,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   _updateUserData() async {
-    final firebaseUser = FirebaseAuth.instance.currentUser!;
-    await db.doc(firebaseUser.uid).update(
+    //final firebaseUser = FirebaseAuth.instance.currentUser!;
+    await db.doc(widget.userId).update(
         {"address": _address, "email": _email, "phone": _phoneController});
   }
 

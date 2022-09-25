@@ -90,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //    BottomNavBar(indexLate: 0);
     getCourseIDs();
     print("0987098709870987");
+    ServiceDetailsScreen(userId: widget.userId);
     super.initState();
   }
 
@@ -1078,7 +1079,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProfileScreen(),
+            builder: (context) => ProfileScreen(userId: widget.userId,),
           ),
         );
       },

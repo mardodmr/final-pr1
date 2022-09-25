@@ -549,6 +549,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         "age": "",
         "phone": widget.userPhone,
         "date": "",
+        "registered": "",
       });
       Navigator.pushReplacement(
         context,

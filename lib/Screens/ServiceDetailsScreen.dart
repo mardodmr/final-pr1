@@ -9,7 +9,10 @@ import 'BookingScreen.dart';
 import 'SubCategoriesScreen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
-  const ServiceDetailsScreen({Key? key}) : super(key: key);
+
+  late String thisCourseId;
+  late String userId;
+  ServiceDetailsScreen({ this.thisCourseId = "", this.userId=""});
 
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
@@ -18,18 +21,51 @@ class ServiceDetailsScreen extends StatefulWidget {
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   int Units = 0;
   int Bedrooms = 0;
-  String thisCourse = "";
-  String getter = "";
+  String currentCourseName = "";
+  String currentCourseTeacher = "";
+  String currentCourseCenter ="";
+  String currentCourseClass ="";
+  String currentCourseDuratoin="";
+  String currentCoursePrice ="";
+
+
+  //String thisCourse = "";
+
 
   Future getCourseData() async {
-    final docRef = FirebaseFirestore.instance.collection("courses").doc(getter);
+    final docRef = FirebaseFirestore.instance.collection("courses").doc(widget.thisCourseId);
     docRef.get().then(
           (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        //data.
+        currentCourseName='${data['course name']}';
+        currentCourseTeacher='${data['teacher']}';
+        currentCourseCenter='${data['center']}';
+        currentCourseClass='${data['class']}';
+        currentCourseDuratoin='${data['duration']}';
+        currentCoursePrice='${data['price']}';
       },
       onError: (e) => print("Error getting document: $e"),
     );
+  }
+
+  _enrollUser () async {
+
+    await FirebaseFirestore.instance.collection('courses').doc(widget.thisCourseId).update(
+        {"participants": FieldValue.increment(1)});
+    await FirebaseFirestore.instance.collection('users').doc(widget.thisCourseId).update(
+        {"registered": FieldValue.arrayUnion([widget.thisCourseId])});
+    /// CHANGE MATERIAL BUTTON TO ENROLLED
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+//    BottomNavBar(indexLate: 0);
+    getCourseData();
+    print("0987098709870987");
+    super.initState();
   }
 
   @override
@@ -627,6 +663,16 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   borderRadius: BorderRadius.circular(10)),
                               fillColor: Color.alphaBlend(Colors.red, Colors.black),
                               onPressed: () {
+
+                                //enroll user
+                                Text("Enrolled",
+                                style: TextStyle(
+                                  fontSize: 3,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),);
+
+
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

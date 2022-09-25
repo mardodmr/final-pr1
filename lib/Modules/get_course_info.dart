@@ -86,7 +86,7 @@ class GetCourseNames extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      ServiceDetailsScreen()));
+                                      ServiceDetailsScreen(thisCourseId: documentId,)));
                         },
                         child: Row(
                           mainAxisAlignment:
