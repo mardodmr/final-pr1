@@ -55,12 +55,13 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     await FirebaseFirestore.instance.collection('users').doc(widget.thisCourseId).update(
         {"registered": FieldValue.arrayUnion([widget.thisCourseId])});
     /// CHANGE MATERIAL BUTTON TO ENROLLED
+    /// TODO add course duration
 
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+
 
 //    BottomNavBar(indexLate: 0);
     getCourseData();
@@ -238,7 +239,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               ),
                             ),
                             Text(
-                              "  Course Details",
+                              currentCourseName,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -277,7 +278,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  "Walaa",
+                                  currentCourseTeacher,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -306,7 +307,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  "1st Branch",
+                                  currentCourseCenter,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -338,7 +339,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  "Class 5",
+                                  currentCourseClass,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -596,7 +597,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                             Row(
                               children: [
                                 Text(
-                                  "Total:  USD ",
+                                  "Total:  SYL ",
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -604,7 +605,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "15.99",
+                                  currentCoursePrice,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,

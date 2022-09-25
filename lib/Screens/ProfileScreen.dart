@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  _fetchData() async { /// TODO
+  _fetchData() async { /// TODO edit this function
     await FirebaseFirestore.instance
         .collection('users')
         .doc(widget.userId)
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     _fetchData();
     print("=========================================");

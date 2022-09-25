@@ -80,12 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
         }));
   }
 
-  /// TODO
+  /// TODO hello username!
 
 
   @override
   void initState() {
-    // TODO: implement initState
+
 
 //    BottomNavBar(indexLate: 0);
     getCourseIDs();
