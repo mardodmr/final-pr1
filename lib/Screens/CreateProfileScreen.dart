@@ -243,7 +243,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   validator: (value){
-                    if(value!.isEmpty || RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(value)){
+                    if(value!.isEmpty /*|| RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(value)*/){
                       return "Enter a valid phone number";
                     }
                   },
@@ -353,7 +353,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         final snackBar = SnackBar(content: Text('Submitting your data...'));
 
                         // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
-                        _setUserData();
+                        setUserData();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -377,17 +377,17 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     );
   }
 
-  _setUserData() async {
+  Future <void> setUserData() async {
 
     ///TODO profile picture
     await db.doc(widget.userId).update({
       "first name": _firstname.text,
       "father name": _fathername.text,
       "last name": _lastname.text,
-      "nationality": _nationality,
-      "address": _address,
+      "nationality": _nationality.text,
+      "address": _address.text,
       "education": dropdownValue,
-      "email": _email,
+      "email": _email.text,
       "gender": _character,
       "permission": "user",
       "age": /*add a date picker*/"",

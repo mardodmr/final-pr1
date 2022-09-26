@@ -41,7 +41,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
   }
 
   /// TODO image picker upload
-  _setCourseData() async {
+  Future <void> setCourseData() async {
     await FirebaseFirestore.instance.collection('courses').add({
       "course name": _coursename.text,
       "teacher": _teacher.text,
@@ -213,7 +213,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                   }),
               SizedBox(height: 20,),
               ElevatedButton(onPressed: (){
-                _setCourseData();
+                setCourseData();
               }, child: Text("Save"))
             ],
           ),

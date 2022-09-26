@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     a=userName;
   }
 
-  Future getUserName() async {
+  Future <void> getUserName() async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(widget.userId)
@@ -101,12 +101,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    super.initState();
     print(widget.userId);
     getUserName();
     getCourseIDs();
     print("0987098709870987");
     ServiceDetailsScreen(userId: widget.userId);
-    super.initState();
+
   }
 
   @override

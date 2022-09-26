@@ -82,401 +82,403 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
         width: double.infinity,
         height: double.infinity,
         color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              height: 106,
-              width: 215,
-              child: Image.asset(
-                "assets/images/logo course mate.PNG",
-                fit: BoxFit.contain,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                height: 106,
+                width: 215,
+                child: Image.asset(
+                  "assets/images/logo course mate.PNG",
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
 
-            // Text(
-            //   "Verification code",
-            //   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            // ),
-            // SizedBox(
-            //   height: 9,
-            // ),
-            Text(
-                'We just send you a verify code. check your inbox to get them'),
+              // Text(
+              //   "Verification code",
+              //   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              // ),
+              // SizedBox(
+              //   height: 9,
+              // ),
+              Text(
+                  'We just send you a verify code. check your inbox to get them'),
 
-            /// هون انا عدلت الطول بدال البادينغ
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec1,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color1 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color1 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+              /// هون انا عدلت الطول بدال البادينغ
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec1,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color1 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color1 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color1,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color1,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec2,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color2 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color2 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec2,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color2 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color2 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color2,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color2,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec3,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color3 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color3 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec3,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color3 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color3 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color3,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color3,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec4,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color4 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color4 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec4,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color4 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color4 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color4,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color4,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec5,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color5 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color5 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec5,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color5 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color5 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color5,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color5,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      readOnly: true,
-                      keyboardType: TextInputType.none,
-                      controller: tec6,
-                      maxLength: 1,
-                      textAlign: TextAlign.center,
-                      buildCounter: (BuildContext context,
-                          {int? currentLength,
-                            int? maxLength,
-                            bool? isFocused}) =>
-                      null,
-                      textInputAction: TextInputAction.next,
-                      onChanged: (value) {
-                        if (value != '') {
-                          setState(() {
-                            color6 = Color(0xff9676FF);
-                          });
-                          FocusScope.of(context).nextFocus();
-                        } else {
-                          setState(() {
-                            color6 = Colors.grey;
-                          });
-                        }
-                      },
-                      cursorColor: Color(0xff9676FF),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Color(0xEFEFEFFF),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        readOnly: true,
+                        keyboardType: TextInputType.none,
+                        controller: tec6,
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        buildCounter: (BuildContext context,
+                            {int? currentLength,
+                              int? maxLength,
+                              bool? isFocused}) =>
+                        null,
+                        textInputAction: TextInputAction.next,
+                        onChanged: (value) {
+                          if (value != '') {
+                            setState(() {
+                              color6 = Color(0xff9676FF);
+                            });
+                            FocusScope.of(context).nextFocus();
+                          } else {
+                            setState(() {
+                              color6 = Colors.grey;
+                            });
+                          }
+                        },
+                        cursorColor: Color(0xff9676FF),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xEFEFEFFF),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.redAccent),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xEFEFEFFF)),
+                          ),
+                          focusColor: color6,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xEFEFEFFF)),
-                        ),
-                        focusColor: color6,
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10),
-                ],
+                    SizedBox(width: 10),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              width: 139,
-              height: 48,
-              child: RawMaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                fillColor: Color(0xEFEFEFFF),
-                onPressed: () async {
-                  smsText = tec1.text +
-                      tec2.text +
-                      tec3.text +
-                      tec4.text +
-                      tec5.text +
-                      tec6.text;
-                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                      verificationId: widget.verficationId, smsCode: smsText);
+              Container(
+                width: 139,
+                height: 48,
+                child: RawMaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  fillColor: Color(0xEFEFEFFF),
+                  onPressed: () async {
+                    smsText = tec1.text +
+                        tec2.text +
+                        tec3.text +
+                        tec4.text +
+                        tec5.text +
+                        tec6.text;
+                    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                        verificationId: widget.verficationId, smsCode: smsText);
 
-                  // Sign the user in (or link) with the credential
-                  await _auth.signInWithCredential(credential);
-                  _checkUser();
+                    // Sign the user in (or link) with the credential
+                    await _auth.signInWithCredential(credential);
+                    checkUser();
+                  },
+                  child: Text("Continue"),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Re-send code in",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+
+              NumericKeyboard(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                onKeyboardTap: _onKeyboardTap,
+                textColor: Colors.black,
+                rightButtonFn: () {
+                  setState(() {
+                    if (i == 2) {
+                      setState(() {
+                        tec1.clear();
+                        color1 = Colors.grey;
+                        i--;
+                      });
+                    } else if (i == 3) {
+                      setState(() {
+                        tec2.clear();
+                        color2 = Colors.grey;
+                        i--;
+                      });
+                    } else if (i == 4) {
+                      setState(() {
+                        tec3.clear();
+                        color3 = Colors.grey;
+                        i--;
+                      });
+                    } else if (i == 5) {
+                      setState(() {
+                        tec4.clear();
+                        color4 = Colors.grey;
+                        i--;
+                      });
+                    } else if (i == 6) {
+                      setState(() {
+                        tec5.clear();
+                        color5 = Colors.grey;
+                        i--;
+                      });
+                    } else if (i == 7) {
+                      setState(() {
+                        tec6.clear();
+                        color6 = Colors.grey;
+                        i--;
+                      });
+                    }
+
+                    //text = text.substring(0, text.length - 1);
+                  });
                 },
-                child: Text("Continue"),
+                rightIcon: Icon(
+                  Icons.backspace,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "Re-send code in",
-                textAlign: TextAlign.center,
-              ),
-            ),
-
-            NumericKeyboard(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              onKeyboardTap: _onKeyboardTap,
-              textColor: Colors.black,
-              rightButtonFn: () {
-                setState(() {
-                  if (i == 2) {
-                    setState(() {
-                      tec1.clear();
-                      color1 = Colors.grey;
-                      i--;
-                    });
-                  } else if (i == 3) {
-                    setState(() {
-                      tec2.clear();
-                      color2 = Colors.grey;
-                      i--;
-                    });
-                  } else if (i == 4) {
-                    setState(() {
-                      tec3.clear();
-                      color3 = Colors.grey;
-                      i--;
-                    });
-                  } else if (i == 5) {
-                    setState(() {
-                      tec4.clear();
-                      color4 = Colors.grey;
-                      i--;
-                    });
-                  } else if (i == 6) {
-                    setState(() {
-                      tec5.clear();
-                      color5 = Colors.grey;
-                      i--;
-                    });
-                  } else if (i == 7) {
-                    setState(() {
-                      tec6.clear();
-                      color6 = Colors.grey;
-                      i--;
-                    });
-                  }
-
-                  //text = text.substring(0, text.length - 1);
-                });
-              },
-              rightIcon: Icon(
-                Icons.backspace,
-                color: Colors.black,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -531,7 +533,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     }
   }
 
-  _checkUser() async {
+  Future <void> checkUser() async {
     var id = _auth.currentUser?.uid;
     var currentUserInfo = await db.doc(id).get();
     if (!currentUserInfo.exists) {
