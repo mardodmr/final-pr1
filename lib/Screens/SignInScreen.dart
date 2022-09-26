@@ -1,8 +1,11 @@
 // import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 // import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'CreateProfileScreen.dart';
 import 'TextFieldWidget.dart';
@@ -15,18 +18,27 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
+
+
 class _SignInScreenState extends State<SignInScreen> {
-  String countryCode = "+963";
-  String countryCodeSyria = "+963";
+  String countryCode = "+971";
+  String countryCodeSyria = "+971";
   String verificationFailedMessage = "";
   TextEditingController _phoneController = TextEditingController();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   String newphone = "";
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 60),
@@ -37,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   "Sign in",
                   style: TextStyle(
@@ -45,9 +57,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
-              ),
+              ),SizedBox(height: 150,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
+
                 child: Text(
                   "Phone Number",
                   style: TextStyle(
@@ -105,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: TextStyle(fontSize: 16.0, color: Colors.black),
                     ),
                     onPressed: () async {
-                      print ("1");
+                      print("1");
                       newphone = countryCodeSyria + _phoneController.text;
                       print("done casting");
                       print(newphone);
@@ -117,26 +130,23 @@ class _SignInScreenState extends State<SignInScreen> {
                       //     }
                       // );
                       await _auth.verifyPhoneNumber(
-                        phoneNumber: newphone,/*$phoneNumber*/
+                        phoneNumber: newphone,
+                        /*$phoneNumber*/
                         verificationCompleted:
-                            (PhoneAuthCredential credential) async{},
+                            (PhoneAuthCredential credential) async {},
                         verificationFailed: (FirebaseAuthException e) {
                           setState(() {
                             verificationFailedMessage = e.code;
                           });
                         },
-
-
                         codeSent: (String verificationId, int? resendToken) {
                           Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => VerifyCodeScreen(
-                                  verficationId: verificationId,
-                                  userPhone: newphone,
-                              )
-                            )
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VerifyCodeScreen(
+                                        verficationId: verificationId,
+                                        userPhone: newphone,
+                                      )));
                         },
                         codeAutoRetrievalTimeout: (String verificationId) {},
                       );

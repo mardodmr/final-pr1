@@ -33,6 +33,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(

@@ -25,6 +25,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 bool firstUse = false;
+bool ifSignIn = false;
+
 Future<void> main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -35,6 +37,10 @@ Future<void> main() async {
   SharedPreferences Preferences = await SharedPreferences.getInstance();
   firstUse = await Preferences.getBool("firstUse") ?? false;
   await Preferences.setBool("firstUse", true);
+
+  ifSignIn = await Preferences.getBool("ifSignIn") ?? false;
+  //await Preferences.setBool("ifSignIn", true);
+
   runApp(MyApp());
   print("1111111");
 }
@@ -44,8 +50,6 @@ Future initialization(BuildContext? context) async {
   await Future.delayed(Duration(seconds: 2));
 }
 
-
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-          SignInScreen(), //(), //firstUse ? HomeScreen() : OnBoardingScreen(),
+      firstUse ? SignInScreen() : OnBoardingScreen(),
     );
   }
 }
