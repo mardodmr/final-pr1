@@ -22,7 +22,7 @@ class GetCourseNames extends StatelessWidget {
       if (snapshot.connectionState == ConnectionState.done){
         Map<String, dynamic> data =
           snapshot.data!.data() as Map<String, dynamic>;
-          return //Text('${data['course name']}');
+          return
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -65,7 +65,7 @@ class GetCourseNames extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '${data['teacher']}',
+                      '${data['course name']}',
                       style: TextStyle(
                           color:
                           Color.fromRGBO(26, 29, 31, 1),
@@ -93,7 +93,7 @@ class GetCourseNames extends StatelessWidget {
                           MainAxisAlignment.center,
                           children: [
                             Text(
-                              '${data['duration']}',
+                              '${data['center']}',
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color.fromRGBO(

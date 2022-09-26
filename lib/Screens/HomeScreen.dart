@@ -65,6 +65,28 @@ class _HomeScreenState extends State<HomeScreen> {
   // course ids
   List<String> courseIDs = [];
 
+  String userName= "";
+
+  valueSetter (String a){
+    a=userName;
+  }
+
+  Future getUserName() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.userId)
+        .get()
+        .then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        valueSetter(
+            '${data['name']}'
+        );
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
   //get ids
   Future getCourseIDs() async {
     await FirebaseFirestore.instance
@@ -77,11 +99,10 @@ class _HomeScreenState extends State<HomeScreen> {
             }));
   }
 
-  /// TODO hello username!
-
   @override
   void initState() {
-//    BottomNavBar(indexLate: 0);
+    print(widget.userId);
+    getUserName();
     getCourseIDs();
     print("0987098709870987");
     ServiceDetailsScreen(userId: widget.userId);
@@ -506,7 +527,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: AppBar(
         actions: [
-          //Todo: mardo al عرص
+          //TODO
           GestureDetector(
             onTap: () {
               Navigator.push(context,
@@ -610,7 +631,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Center(
                         child: AutoSizeText(
                           ///get() the user name form database
-                          "Hello " + /*user.firstname*/ " 👋",
+                          "Hello $userName 👋",
                           style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -916,7 +937,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white),
                   child: Container(
                     height: 300,
-                    //TODO
+
                     child: FutureBuilder(
                         future: getCourseIDs(),
                         builder: (context, snapshot) {
@@ -930,7 +951,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //getter =courseIDs[index];
                                 return GetCourseNames(
                                   documentId: courseIDs[index],
-                                  neededValue: "course name",
+                                  neededValue: "teacher",
                                 );
                               });
                         }),

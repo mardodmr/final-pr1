@@ -25,7 +25,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
   TextEditingController _price = TextEditingController();
   TextEditingController _center = TextEditingController();
   TextEditingController _duration = TextEditingController();
-  //TextEditingController _category = TextEditingController();
+  TextEditingController _class = TextEditingController();
+  TextEditingController _startdate = TextEditingController();
 
   Future pickImage() async {
     try {
@@ -38,10 +39,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       print("Field to pick Image $e");
     }
   }
-  /// TODO  Walaa  btn + ( this )onpressed function
+
+  /// TODO image picker upload
   _setCourseData() async {
-
-
     await FirebaseFirestore.instance.collection('courses').add({
       "course name": _coursename.text,
       "teacher": _teacher.text,
@@ -49,6 +49,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       "duration": _duration.text,
       "category": dropdownValue,
       "center": _center.text,
+      "participants": 0,
+      "class": _class.text,
+      "start_date": _startdate.text,
 
     });
   }
@@ -149,6 +152,28 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
+              ),const Text("* Course Class:"),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                onChanged: (val) {},
+                controller: _class,
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Class',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),const Text("* Course Start Date:"),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                onChanged: (val) {},
+                controller: _startdate,
+                decoration: kTextFieldDecoration.copyWith(
+                  hintText: 'Course Date',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               ElevatedButton(style: ElevatedButton.styleFrom(
                 maximumSize: Size.fromHeight(56),
@@ -187,7 +212,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                     });
                   }),
               SizedBox(height: 20,),
-              ElevatedButton(onPressed: (){}, child: Text("Save"))
+              ElevatedButton(onPressed: (){
+                _setCourseData();
+              }, child: Text("Save"))
             ],
           ),
         ),

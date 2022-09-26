@@ -16,12 +16,14 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  String countryCode = "+1";
+  String countryCode = "+963";
+  String countryCodeSyria = "+963";
   String verificationFailedMessage = "";
-  final TextEditingController _phoneController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
-  String phoneNumber = "";
+
+  String newphone = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 hideInput: false,
                 keyboardType: TextInputType.phone,
                 con: _phoneController,
-                hintText: 'Phone number',
+                hintText: 'Phone number without 0',
                 //LocaleKeys.B03signUpScreen_number.tr(),
               ),
               SizedBox(
@@ -104,9 +106,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     onPressed: () async {
                       print ("1");
-                      phoneNumber= "+16505551234";
-                      print(_phoneController);
-                      print(phoneNumber);
+                      newphone = countryCodeSyria + _phoneController.text;
+                      print("done casting");
+                      print(newphone);
+                      //print(phoneNumber);
                       // showDialog(
                       //     context: context,
                       //     builder: (context){
@@ -114,7 +117,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       //     }
                       // );
                       await _auth.verifyPhoneNumber(
-                        phoneNumber: '+963937667069',
+                        phoneNumber: newphone,/*$phoneNumber*/
                         verificationCompleted:
                             (PhoneAuthCredential credential) async{},
                         verificationFailed: (FirebaseAuthException e) {
@@ -123,13 +126,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           });
                         },
 
+
                         codeSent: (String verificationId, int? resendToken) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => VerifyCodeScreen(
                                   verficationId: verificationId,
-                                  userPhone: phoneNumber,
+                                  userPhone: newphone,
                               )
                             )
                           );

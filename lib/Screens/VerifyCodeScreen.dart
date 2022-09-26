@@ -61,14 +61,14 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color.fromRGBO(21, 17, 149, 1.0),
-          onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => CreateProfileScreen()));
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back),
+        //   color: Color.fromRGBO(21, 17, 149, 1.0),
+        //   onPressed: () {
+        //     Navigator.pushReplacement(context,
+        //         MaterialPageRoute(builder: (context) => CreateProfileScreen()));
+        //   },
+        // ),
         title: Text(
           "Confirmation Code",
           style: TextStyle(

@@ -9,33 +9,33 @@ import 'BookingScreen.dart';
 import 'SubCategoriesScreen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
+
   late String thisCourseId;
   late String userId;
-
-  ServiceDetailsScreen({this.thisCourseId = "", this.userId = ""});
+  ServiceDetailsScreen({ this.thisCourseId = "", this.userId=""});
 
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
 
-String currentCourseName = "";
-String currentCourseTeacher = "";
-String currentCourseCenter = "";
-String currentCourseClass = "";
-String currentCourseDuratoin = "";
-String currentCoursePrice = "";
-
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   int Units = 0;
   int Bedrooms = 0;
+  String currentCourseName = "";
+  String currentCourseTeacher = "";
+  String currentCourseCenter ="";
+  String currentCourseClass ="";
+  String currentCourseDuratoin="";
+  String currentCoursePrice ="";
 
+  valueSetter(String a, b, c, d, e, f){
 
-
-  //String thisCourse = "";
-
-  void setCourse(String s) {
-    currentCourseClass = s;
-    print(currentCourseClass);
+    a=currentCourseName;
+    b= currentCourseTeacher;
+    c=currentCourseCenter;
+    d=currentCourseClass;
+    e=currentCourseDuratoin;
+    f=currentCoursePrice;
   }
 
   Future getCourseData() async {
@@ -46,14 +46,14 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         .then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        print('${data['course name']}');
-        setCourse('${data['course name']}');
-        currentCourseName = '${data['course name']}';
-        currentCourseTeacher = '${data['teacher']}';
-        currentCourseCenter = '${data['center']}';
-        currentCourseClass = '${data['class']}';
-        currentCourseDuratoin = '${data['duration']}';
-        currentCoursePrice = '${data['price']}';
+        valueSetter(
+        '${data['course name']}',
+        '${data['teacher']}',
+        '${data['center']}',
+        '${data['class']}',
+        '${data['duration']}',
+        '${data['price']}'
+        );
       },
       onError: (e) => print("Error getting document: $e"),
     );
@@ -70,20 +70,19 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         .update({
       "registered": FieldValue.arrayUnion([widget.thisCourseId])
     });
-
-    /// CHANGE MATERIAL BUTTON TO ENROLLED
-    ///  TODO Walaa add course duration
   }
 
   @override
   void initState() {
-//    BottomNavBar(indexLate: 0);
+
     getCourseData();
     print(currentCourseCenter);
     print(currentCourseClass);
     print("0987098709870987");
     super.initState();
   }
+
+  bool click = true;
 
   @override
   Widget build(BuildContext context) {
@@ -223,8 +222,10 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     size: 30,
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeScreen()));
                   },
                 ),
               ),
@@ -408,7 +409,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                              Color.fromRGBO(209, 211, 212, 1),
+                                          Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -495,7 +496,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                         border: Border.all(
                                           width: 2,
                                           color:
-                                              Color.fromRGBO(209, 211, 212, 1),
+                                          Color.fromRGBO(209, 211, 212, 1),
                                         ),
                                         borderRadius: BorderRadius.circular(12),
                                         color: Colors.white),
@@ -679,25 +680,21 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               fillColor:
                                   Color.alphaBlend(Colors.red, Colors.black),
                               onPressed: () {
-                                //enroll user
-                                Text(
-                                  "Enrolled",
-                                  style: TextStyle(
-                                    fontSize: 3,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
-                                );
+                                _enrollUser();
+                                setState(() {
+                                  click = !click;
+                                });
 
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => upComingScreen(),
-                                  ),
-                                );
+                                //enroll
+
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => HomeScreen(),
+                                //   ),
+                                // );
                               },
-                              child: Text(
-                                "ENROLL",
+                              child: Text((click == false)? "ENROLLED" : "ENROLL",
                                 style: TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.w700,

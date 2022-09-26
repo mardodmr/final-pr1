@@ -35,29 +35,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  _fetchData() async { /// TODO edit this function
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(widget.userId)
-        .get()
-        .then((value) => {
-              (myemail = ['email'].toString()),
-              (myaddress = ['address'].toString()),
-              (myphone = ['phone'].toString())
-            });
+  valueSetter(String a, b, c){
+
+    a=myemail;
+    b= myaddress;
+    c=myphone;
   }
 
-  _updateUserData() async {
+  Future fetchData() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.userId)
+        .get()
+        .then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        valueSetter(
+            '${data['email']}',
+            '${data['address']}',
+            '${data['phone']}'
+        );
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
+
+  updateUserData() async {
     //final firebaseUser = FirebaseAuth.instance.currentUser!;
     await db.doc(widget.userId).update(
-        {"address": _address, "email": _email, "phone": _phoneController});
+        {"address": _address.text, "email": _email.text, "phone": _phoneController.text});
   }
 
   @override
   void initState() {
 
     super.initState();
-    _fetchData();
+    fetchData();
     print("=========================================");
     print(myemail);
     print(myphone);
@@ -111,9 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       fillColor: Theme.of(context).primaryColor,
                       onPressed: () {
-                        _updateUserData();
-                        // save changes methode
-                        // navigate to home and refresh
+                        updateUserData();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => HomeScreen()),
