@@ -15,7 +15,8 @@ class ProfileScreen extends StatefulWidget {
   //const ProfileScreen({Key? key}) : super(key: key);
 
   late String userId;
-  ProfileScreen({ this.userId = ""});
+  String Name;
+  ProfileScreen({ this.userId = "", required this. Name});
   
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -161,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     borderRadius: BorderRadius.circular(100),
                   ),
                   title: Text(
-                    "Ahmad Jalal",
+                    widget.Name,
                     style: TextStyle(fontSize: 15),
                   ),
                 ),

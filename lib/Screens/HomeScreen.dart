@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   title: Text(
-                    "Ahmad Jalal",
+                    "Walaa Alkadamani",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
@@ -1090,7 +1090,7 @@ class _HomeScreenState extends State<HomeScreen> {
           context,
           MaterialPageRoute(
             builder: (context) => ProfileScreen(
-              userId: widget.userId,
+              userId: widget.userId, Name: userName
             ),
           ),
         );
