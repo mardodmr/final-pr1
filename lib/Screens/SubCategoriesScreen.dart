@@ -227,12 +227,12 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                 ///2
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ServiceDetailsScreen(),
-                      ),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ServiceDetailsScreen(),
+                    //   ),
+                    // );
                   },
                   child: Container(
                     child: Row(

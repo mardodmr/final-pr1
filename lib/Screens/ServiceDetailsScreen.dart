@@ -10,9 +10,9 @@ import 'SubCategoriesScreen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
 
-  late String thisCourseId;
+  String thisCourseId;
   late String userId;
-  ServiceDetailsScreen({ this.thisCourseId = "", this.userId=""});
+  ServiceDetailsScreen({ required this.thisCourseId, this.userId=""});
 
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
@@ -74,12 +74,14 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
 
   @override
   void initState() {
-
+    super.initState();
+    print("im here service deatial init");
+    print(widget.thisCourseId);
     getCourseData();
     print(currentCourseCenter);
     print(currentCourseClass);
     print("0987098709870987");
-    super.initState();
+
   }
 
   bool click = true;

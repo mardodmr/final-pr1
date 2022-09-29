@@ -102,11 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    print("i'm in init state");
     print(widget.userId);
     getUserName();
     getCourseIDs();
     print("0987098709870987");
-    ServiceDetailsScreen(userId: widget.userId);
+    //ServiceDetailsScreen(userId: widget.userId);
 
   }
 
@@ -140,12 +141,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ServiceDetailsScreen(),
-                      ),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ServiceDetailsScreen(),
+                    //   ),
+                    // );
                   },
                 ),
               )
@@ -951,8 +952,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // );
                                 //getter =courseIDs[index];
                                 return GetCourseNames(
-                                  documentId: courseIDs[index],
-                                  neededValue: "teacher",
+                                  documentId: courseIDs[index]
                                 );
                               });
                         }),

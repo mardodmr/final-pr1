@@ -7,14 +7,19 @@ import '../Screens/SubCategoriesScreen.dart';
 class GetCourseNames extends StatelessWidget {
 
   final String documentId;
-  final String neededValue;
 
-  GetCourseNames({required this.documentId, required this.neededValue});
+
+  GetCourseNames({required this.documentId});
+
+  @override
+
 
   @override
   Widget build(BuildContext context) {
     //get the collection
     CollectionReference courses = FirebaseFirestore.instance.collection('courses');
+    print ("in get course screen" );
+    print(documentId);
 
     return FutureBuilder<DocumentSnapshot>(
         future: courses.doc(documentId).get(),
@@ -43,7 +48,7 @@ class GetCourseNames extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('${data[neededValue]}',style: TextStyle(
+                        Text('${data['teacher']}',style: TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(
                           51, 56, 63, 1),
