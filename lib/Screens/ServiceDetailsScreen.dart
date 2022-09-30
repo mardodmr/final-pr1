@@ -17,6 +17,7 @@ class ServiceDetailsScreen extends StatefulWidget {
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
 
+
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   int Units = 0;
   int Bedrooms = 0;
@@ -82,7 +83,12 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     super.initState();
     // print("im here service deatial init");
     // print(widget.thisCourseId);
-    _getCourseData();
+    _getCourseData().then((value) {
+      print("123123");
+      setState(() {
+
+      });
+    });
     // print(_currentCourseCenter);
     // print(_currentCourseClass);
     // print("out of init state");
@@ -182,7 +188,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700,
-                                color: Color.fromRGBO(202, 189, 255, 1),
+                                color: Color.fromRGBO(0, 0, 0, 1.0),
                               ),
                             ),
                             Text(

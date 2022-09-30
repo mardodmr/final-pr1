@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // course ids
   List<String> courseIDs = [];
 
-
   Future<void> _getUserName() async {
     print("i;m in user name");
     await FirebaseFirestore.instance
@@ -71,12 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
         .then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        _userName='${data['first name']}';
+        _userName = '${data['first name']}';
         print("done value setting");
       },
       onError: (e) => print("Error getting document: $e"),
     );
   }
+
 //value setting
   //get ids
   Future _getCourseIDs() async {
@@ -91,12 +91,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
     print("i'm in init state");
     print(widget.userId);
-    _getUserName();
-    _getCourseIDs();
+    _getUserName().then((value) {
+      print("result: 22221111");
+      setState(() {});
+    });
+    _getCourseIDs().then((value) {
+      print("result: 22221111");
+      setState(() {});
+    });
     print(_userName);
     print("done init state");
     //ServiceDetailsScreen(userId: widget.userId);
