@@ -43,7 +43,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
 
   /// TODO image picker upload
   Future<void> _setCourseData() async {
-    await FirebaseFirestore.instance.collection('courses').add({
+    await FirebaseFirestore.instance.collection("courses").add({
       "course name": _coursename.text,
       "teacher": _teacher.text,
       "price": _price.text,

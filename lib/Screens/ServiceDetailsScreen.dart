@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_pr1/Screens/HomeScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,15 +27,16 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   String _currentCourseDuratoin="";
   String _currentCoursePrice ="";
 
-  _valueSetter(String a, b, c, d, e, f){
-
-    a=_currentCourseName;
-    b= _currentCourseTeacher;
-    c=_currentCourseCenter;
-    d=_currentCourseClass;
-    e=_currentCourseDuratoin;
-    f=_currentCoursePrice;
-  }
+  // _valueSetter(String a, b, c, d, e, f){
+  //
+  //   a=_currentCourseName;
+  //   b= _currentCourseTeacher;
+  //   c=_currentCourseCenter;
+  //   d=_currentCourseClass;
+  //   e=_currentCourseDuratoin;
+  //   f=_currentCoursePrice;
+  //   print("done setiing values");
+  // }
 
   Future _getCourseData() async {
     print ("im in get course data");
@@ -45,15 +47,18 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         .then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        _valueSetter(
-        '${data['course name']}',
-        '${data['teacher']}',
-        '${data['center']}',
-        '${data['class']}',
-        '${data['duration']}',
-        '${data['price']}'
-        );
+        print ('${data['course name']}');
+        //_currentCourseCenter= '${data['course name']}';
+
+        _currentCourseName='${data['course name']}';
+        _currentCourseTeacher='${data['teacher']}';
+        _currentCourseCenter='${data['center']}';
+        _currentCourseClass='${data['class']}';
+        _currentCourseDuratoin='${data['duration']}';
+        _currentCoursePrice='${data['price']}';
+
         print ("done query");
+        print(_currentCourseCenter);
       },
       onError: (e) => print("Error getting document: $e"),
     );
@@ -61,12 +66,12 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
 
   _enrollUser() async {
     await FirebaseFirestore.instance
-        .collection('courses')
+        .collection("courses")
         .doc(widget.thisCourseId)
         .update({"participants": FieldValue.increment(1)});
     await FirebaseFirestore.instance
-        .collection('users')
-        .doc(widget.thisCourseId)
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .update({
       "registered": FieldValue.arrayUnion([widget.thisCourseId])
     });
@@ -75,13 +80,12 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    print("im here service deatial init");
-    print(widget.thisCourseId);
+    // print("im here service deatial init");
+    // print(widget.thisCourseId);
     _getCourseData();
-    print(_currentCourseCenter);
-    print(_currentCourseClass);
-    print("out of init state");
-
+    // print(_currentCourseCenter);
+    // print(_currentCourseClass);
+    // print("out of init state");
   }
 
   bool click = true;
@@ -182,7 +186,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               ),
                             ),
                             Text(
-                              _currentCourseName,
+                              '$_currentCourseName',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -282,7 +286,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  _currentCourseClass,
+                                  '$_currentCourseClass',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -439,7 +443,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   width: 10,
                                 ),
                                 Text(
-                                  "$Bedrooms",
+                                  '$Bedrooms',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -548,7 +552,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   ),
                                 ),
                                 Text(
-                                  _currentCoursePrice,
+                                  '$_currentCoursePrice',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,

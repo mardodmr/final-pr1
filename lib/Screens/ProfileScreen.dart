@@ -16,8 +16,9 @@ class ProfileScreen extends StatefulWidget {
 
   late String userId;
   String Name;
-  ProfileScreen({ this.userId = "", required this.Name});
-  
+
+  ProfileScreen({this.userId = "", required this.Name});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -26,7 +27,7 @@ enum SingingCharacter { male, female }
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final formKey = GlobalKey<FormState>();
-  var db = FirebaseFirestore.instance.collection('users');
+  var db = FirebaseFirestore.instance.collection("users");
   String _myemail = "";
   String _myphone = "";
   String _myaddress = "";
@@ -35,12 +36,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  _valueSetter(String a, b, c){
-
-    a=_myemail;
-    b= _myaddress;
-    c=_myphone;
-  }
+  // _valueSetter(String a, b, c){
+  //
+  //   a=_myemail;
+  //   b= _myaddress;
+  //   c=_myphone;
+  // }
 
   Future _fetchUserData() async {
     await FirebaseFirestore.instance
@@ -48,28 +49,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .doc(widget.userId)
         .get()
         .then(
-          (DocumentSnapshot doc) {
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        _valueSetter(
-            '${data['email']}',
-            '${data['address']}',
-            '${data['phone']}'
-        );
+
+        _myemail = '${data['email']}';
+        _myaddress = '${data['address']}';
+        _myphone = '${data['phone']}';
       },
       onError: (e) => print("Error getting document: $e"),
     );
   }
 
-
   _updateUserData() async {
-    //final firebaseUser = FirebaseAuth.instance.currentUser!;
-    await db.doc(widget.userId).update(
-        {"address": _address.text, "email": _email.text, "phone": _phoneController.text});
+    final firebaseUser = FirebaseAuth.instance.currentUser!;
+    await db.doc(firebaseUser.uid).update({
+      "address": _address.text,
+      "email": _email.text,
+      "phone": _phoneController.text
+    });
   }
 
   @override
   void initState() {
-
     super.initState();
     _fetchUserData();
     print("=========================================");
@@ -267,7 +268,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

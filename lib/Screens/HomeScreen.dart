@@ -62,30 +62,26 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> courseIDs = [];
 
 
-  _valueSetter(String a) {
-    a = _userName;
-  }
-
   Future<void> _getUserName() async {
     print("i;m in user name");
     await FirebaseFirestore.instance
         .collection("users")
-        .doc(widget.userId)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        _valueSetter('${data['first name']}');
+        _userName='${data['first name']}';
         print("done value setting");
       },
       onError: (e) => print("Error getting document: $e"),
     );
   }
-
+//value setting
   //get ids
-  Future getCourseIDs() async {
+  Future _getCourseIDs() async {
     await FirebaseFirestore.instance
-        .collection('courses')
+        .collection("courses")
         .get()
         .then((snapshot) => snapshot.docs.forEach((document) {
               print(document.reference);
@@ -100,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print("i'm in init state");
     print(widget.userId);
     _getUserName();
-    getCourseIDs();
+    _getCourseIDs();
     print(_userName);
     print("done init state");
     //ServiceDetailsScreen(userId: widget.userId);
@@ -412,7 +408,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: 300,
                     child: FutureBuilder(
-                        future: getCourseIDs(),
+                        future: _getCourseIDs(),
                         builder: (context, snapshot) {
                           return ListView.builder(
                               scrollDirection: Axis.vertical,

@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       debugShowCheckedModeBanner: false,
       home:
-      firstUse ? SignInScreen() : OnBoardingScreen(),
+      firstUse ? HomeScreen() : OnBoardingScreen(),
     );
   }
 }

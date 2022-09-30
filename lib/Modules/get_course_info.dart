@@ -16,7 +16,7 @@ class GetCourseNames extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //get the collection
-    CollectionReference courses = FirebaseFirestore.instance.collection('courses');
+    CollectionReference courses = FirebaseFirestore.instance.collection("courses");
     print ("in get course screen" );
     print(documentId);
 

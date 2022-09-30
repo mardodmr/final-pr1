@@ -43,7 +43,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
   var tec6 = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  var db = FirebaseFirestore.instance.collection('users');
+  var db = FirebaseFirestore.instance.collection("users");
 
   // final MyConnectivity _connectivity = MyConnectivity.instance;
 

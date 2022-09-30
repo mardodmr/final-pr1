@@ -2,6 +2,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Utils/constant.dart';
 import 'HomeScreen.dart';
@@ -23,7 +24,7 @@ enum SingingCharacter { male, female }
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   final formKey= GlobalKey<FormState>();
-  var db = FirebaseFirestore.instance.collection('users');
+  var db = FirebaseFirestore.instance.collection("users");
   String dropdownValue = "Education Level";
   final TextEditingController _phoneController = TextEditingController();
   SingingCharacter? _character = SingingCharacter.male;
@@ -343,7 +344,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       print(_email.text);
                       //print(_gender.text);
                       //set values
-                      if(formKey.currentState!.validate()){
+
+
                         final snackBar = SnackBar(content: Text('Submitting your data...'));
 
                         // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
@@ -354,7 +356,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             builder: (context) => HomeScreen(userId: widget.userId,),
                           ),
                         );
-                      }
 
 
                     }, //onPressed
@@ -375,7 +376,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
     print(widget.userId);
     ///TODO profile picture
-    await db.doc(widget.userId).set({
+    await db.doc(FirebaseAuth.instance.currentUser?.uid).set({
       "id": widget.userId,
       "first name": _firstname.text,
       "father name": _fathername.text,
@@ -384,7 +385,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
       "address": _address.text,
       "education": dropdownValue,
       "email": _email.text,
-      "gender": _character,
+      //"gender": _character,
       "permission": "user",
       //"age": /*add a date picker*/"",
       "created_date": Timestamp.now(),
