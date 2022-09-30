@@ -33,17 +33,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   TextEditingController _fathername = TextEditingController();
   TextEditingController _address = TextEditingController();
   TextEditingController _education = TextEditingController();
-
-  //dropdownvalue to db
-  //_charachter to db
-
   TextEditingController _email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -353,11 +347,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         final snackBar = SnackBar(content: Text('Submitting your data...'));
 
                         // _scaffoldKey.currentState!.Scaffold.of(context).showSnackBar;
-                        setUserData();
+                        _setUserData();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
+                            builder: (context) => HomeScreen(userId: widget.userId,),
                           ),
                         );
                       }
@@ -377,10 +371,12 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     );
   }
 
-  Future <void> setUserData() async {
+  Future <void> _setUserData() async {
 
+    print(widget.userId);
     ///TODO profile picture
-    await db.doc(widget.userId).update({
+    await db.doc(widget.userId).set({
+      "id": widget.userId,
       "first name": _firstname.text,
       "father name": _fathername.text,
       "last name": _lastname.text,
@@ -390,8 +386,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
       "email": _email.text,
       "gender": _character,
       "permission": "user",
-      "age": /*add a date picker*/"",
-      "date": /*add creation date*/ "",
+      //"age": /*add a date picker*/"",
+      "created_date": Timestamp.now(),
+      "registered": [],
+
     });
+    print("last line in set user data");
   }
 }

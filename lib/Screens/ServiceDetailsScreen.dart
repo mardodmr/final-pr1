@@ -5,8 +5,6 @@ import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'BookingScreen.dart';
-import 'SubCategoriesScreen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
 
@@ -21,24 +19,25 @@ class ServiceDetailsScreen extends StatefulWidget {
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
   int Units = 0;
   int Bedrooms = 0;
-  String currentCourseName = "";
-  String currentCourseTeacher = "";
-  String currentCourseCenter ="";
-  String currentCourseClass ="";
-  String currentCourseDuratoin="";
-  String currentCoursePrice ="";
+  String _currentCourseName = "";
+  String _currentCourseTeacher = "";
+  String _currentCourseCenter ="";
+  String _currentCourseClass ="";
+  String _currentCourseDuratoin="";
+  String _currentCoursePrice ="";
 
-  valueSetter(String a, b, c, d, e, f){
+  _valueSetter(String a, b, c, d, e, f){
 
-    a=currentCourseName;
-    b= currentCourseTeacher;
-    c=currentCourseCenter;
-    d=currentCourseClass;
-    e=currentCourseDuratoin;
-    f=currentCoursePrice;
+    a=_currentCourseName;
+    b= _currentCourseTeacher;
+    c=_currentCourseCenter;
+    d=_currentCourseClass;
+    e=_currentCourseDuratoin;
+    f=_currentCoursePrice;
   }
 
-  Future getCourseData() async {
+  Future _getCourseData() async {
+    print ("im in get course data");
     await FirebaseFirestore.instance
         .collection("courses")
         .doc(widget.thisCourseId)
@@ -46,7 +45,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         .then(
       (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        valueSetter(
+        _valueSetter(
         '${data['course name']}',
         '${data['teacher']}',
         '${data['center']}',
@@ -54,6 +53,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
         '${data['duration']}',
         '${data['price']}'
         );
+        print ("done query");
       },
       onError: (e) => print("Error getting document: $e"),
     );
@@ -77,10 +77,10 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     super.initState();
     print("im here service deatial init");
     print(widget.thisCourseId);
-    getCourseData();
-    print(currentCourseCenter);
-    print(currentCourseClass);
-    print("0987098709870987");
+    _getCourseData();
+    print(_currentCourseCenter);
+    print(_currentCourseClass);
+    print("out of init state");
 
   }
 
@@ -91,36 +91,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        //backgroundColor: Colors.red,
-        // appBar: AppBar(
-        //   leading: BackButton(color: Colors.black),
-        //   elevation: 0.0,
-        //   backgroundColor: Colors.white,
-        //   centerTitle: true,
-        //   title: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //     children: [
-        //       SizedBox(
-        //         width: 10,
-        //       ),
-        //       Text(
-        //         "Login info",
-        //         style:
-        //             TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        //       ),
-        //       IconButton(
-        //         onPressed: () {
-        //           // Navigator.pushReplacement(context,
-        //           //     MaterialPageRoute(builder: (context) => SettingScreen()));
-        //         },
-        //         icon: Icon(
-        //           Icons.call,
-        //           color: Colors.black,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
+
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -161,58 +132,13 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                   ),
                 ),
               ),
-              // Positioned(
-              //   child: MaterialButton(
-              //       enableFeedback: false,
-              //       disabledColor: Colors.white,
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(30.0),
-              //       ),
-              //       height: 60.0,
-              //       minWidth: 100.0,
-              //       color: Color(0xff9676FF),
-              //       child: Text(
-              //         'Logout',
-              //         style: TextStyle(
-              //           fontSize: 16.0,
-              //           fontWeight: FontWeight.bold,
-              //           color: Colors.white,
-              //         ),
-              //       ),
-              //       onPressed: () {}),
-              //   bottom: 40,
-              //   left: 30,
-              // ),
+
               Positioned(
                 top: 80,
                 left: 40,
                 child: Container(
                   width: 70,
                   height: 35,
-                  // child: RawMaterialButton(
-                  //   shape: RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.circular(16),
-                  //   ),
-                  //   fillColor: Color.fromRGBO(251, 148, 80, 1),
-                  //   onPressed: () {},
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Icon(
-                  //         Icons.star,
-                  //         color: Colors.white,
-                  //       ),
-                  //       Text(
-                  //         " 4.5",
-                  //         style: TextStyle(
-                  //           fontSize: 15,
-                  //           fontWeight: FontWeight.w600,
-                  //           color: Colors.white,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ),
               ),
               Positioned(
@@ -256,7 +182,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               ),
                             ),
                             Text(
-                              currentCourseName,
+                              _currentCourseName,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -295,7 +221,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  currentCourseTeacher,
+                                  _currentCourseTeacher,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -324,7 +250,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  currentCourseCenter,
+                                  _currentCourseCenter,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -356,7 +282,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  currentCourseClass,
+                                  _currentCourseClass,
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Color.fromRGBO(39, 43, 48, 1),
@@ -622,7 +548,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                                   ),
                                 ),
                                 Text(
-                                  currentCoursePrice,
+                                  _currentCoursePrice,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
@@ -682,6 +608,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                               fillColor:
                                   Color.alphaBlend(Colors.red, Colors.black),
                               onPressed: () {
+                                ///TODO inactivate button
                                 _enrollUser();
                                 setState(() {
                                   click = !click;

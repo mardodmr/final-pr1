@@ -16,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 
   late String userId;
   String Name;
-  ProfileScreen({ this.userId = "", required this. Name});
+  ProfileScreen({ this.userId = "", required this.Name});
   
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -25,25 +25,24 @@ class ProfileScreen extends StatefulWidget {
 enum SingingCharacter { male, female }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String countryCode = "+1";
   final formKey = GlobalKey<FormState>();
   var db = FirebaseFirestore.instance.collection('users');
-  String myemail = "";
-  String myphone = "";
-  String myaddress = "";
+  String _myemail = "";
+  String _myphone = "";
+  String _myaddress = "";
 
   TextEditingController _address = TextEditingController();
   TextEditingController _email = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
-  valueSetter(String a, b, c){
+  _valueSetter(String a, b, c){
 
-    a=myemail;
-    b= myaddress;
-    c=myphone;
+    a=_myemail;
+    b= _myaddress;
+    c=_myphone;
   }
 
-  Future fetchData() async {
+  Future _fetchUserData() async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(widget.userId)
@@ -51,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .then(
           (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
-        valueSetter(
+        _valueSetter(
             '${data['email']}',
             '${data['address']}',
             '${data['phone']}'
@@ -62,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
 
-  updateUserData() async {
+  _updateUserData() async {
     //final firebaseUser = FirebaseAuth.instance.currentUser!;
     await db.doc(widget.userId).update(
         {"address": _address.text, "email": _email.text, "phone": _phoneController.text});
@@ -72,11 +71,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
 
     super.initState();
-    fetchData();
+    _fetchUserData();
     print("=========================================");
-    print(myemail);
-    print(myphone);
-    print(myaddress);
+    print(_myemail);
+    print(_myphone);
+    print(_myaddress);
     print("=========================================");
   }
 
@@ -126,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       fillColor: Theme.of(context).primaryColor,
                       onPressed: () {
-                        updateUserData();
+                        _updateUserData();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -200,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         controller: _address,
                         onChanged: (val) {},
                         decoration: kTextFieldDecoration.copyWith(
-                          hintText: myaddress,
+                          hintText: _myaddress,
                         ),
                       ),
                       SizedBox(
@@ -251,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onChanged: (val) {},
                         controller: _email,
                         decoration: kTextFieldDecoration.copyWith(
-                          hintText: myemail,
+                          hintText: _myemail,
                         ),
                       ),
                       SizedBox(
@@ -268,164 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            // Container(
-            //   padding: EdgeInsets.all(10.0),
-            //   width: double.infinity,
-            //   decoration: BoxDecoration(
-            //     color: Theme.of(context).primaryColor,
-            //     borderRadius: BorderRadius.circular(8),
-            //   ),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.stretch,
-            //     children: [
-            //       Text(
-            //         "Phone Number",
-            //         //textAlign: TextAlign.start,
-            //         style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            //       ),
-            //       SizedBox(
-            //         height: 8,
-            //       ),
-            //       // Padding(
-            //       //   padding: EdgeInsets.symmetric(vertical: 20.0),
-            //       //   child: Container(
-            //       //     padding: EdgeInsets.symmetric(vertical: 10.0),
-            //       //     width: double.infinity,
-            //       //     decoration: BoxDecoration(
-            //       //       color: Color(0xF5F5F5FF),
-            //       //       borderRadius: BorderRadius.circular(8),
-            //       //     ),
-            //       //     child: Text(""),
-            //       //   ),
-            //       // ),
-            //       Container(
-            //         width: double.infinity,
-            //         height: 45,
-            //         padding: EdgeInsets.only(left: 20),
-            //         decoration: BoxDecoration(
-            //           color: Theme.of(context).accentColor,
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text(
-            //               "00 971 50 840 0700",
-            //               textAlign: TextAlign.start,
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 20,
-            //       ),
-            //       Text(
-            //         "Email",
-            //         style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            //       ),
-            //       SizedBox(
-            //         height: 8,
-            //       ),
-            //       Container(
-            //         width: double.infinity,
-            //         height: 45,
-            //         padding: EdgeInsets.only(left: 20),
-            //         decoration: BoxDecoration(
-            //           color: Theme.of(context).accentColor,
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text(
-            //               "ahmadjalal@gmail.com",
-            //               textAlign: TextAlign.start,
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 20,
-            //       ),
-            //       Text(
-            //         "Gender",
-            //         style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            //       ),
-            //       SizedBox(
-            //         height: 8,
-            //       ),
-            //       Container(
-            //         width: double.infinity,
-            //         height: 45,
-            //         padding: EdgeInsets.only(left: 20),
-            //         decoration: BoxDecoration(
-            //           color: Theme.of(context).accentColor,
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text(
-            //               "Male",
-            //               textAlign: TextAlign.start,
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 20,
-            //       ),
-            //       Text(
-            //         "Date of Birth",
-            //         style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            //       ),
-            //       SizedBox(
-            //         height: 8,
-            //       ),
-            //       Container(
-            //         width: double.infinity,
-            //         height: 45,
-            //         padding: EdgeInsets.only(left: 20),
-            //         decoration: BoxDecoration(
-            //           color: Theme.of(context).accentColor,
-            //           borderRadius: BorderRadius.circular(8),
-            //         ),
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text(
-            //               "Not Set",
-            //               textAlign: TextAlign.start,
-            //               style: TextStyle(
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 10,
-            //       ),
-            //     ],
-            //   ),
-            // ),
+
           ],
         ),
       ),

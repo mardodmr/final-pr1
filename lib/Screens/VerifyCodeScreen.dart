@@ -1,20 +1,10 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
-
-//import 'package:center/Screens/CreateProfileScreen.dart';
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
-
-//import 'package:center/Screens/SignInScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../Utils/constant.dart';
 import 'CreateProfileScreen.dart';
 import 'HomeScreen.dart';
-import 'TextFieldWidget.dart';
 
 class VerifyCodeScreen extends StatefulWidget {
   //const SignUpScreen({Key? key}) : super(key: key);
@@ -98,17 +88,9 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                 ),
               ),
 
-              // Text(
-              //   "Verification code",
-              //   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              // ),
-              // SizedBox(
-              //   height: 9,
-              // ),
               Text(
-                  'We just send you a verify code. check your inbox to get them'),
+                  'We sent you a verification code. Please check your inbox'),
 
-              /// هون انا عدلت الطول بدال البادينغ
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
                 child: Row(
@@ -539,22 +521,6 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
     var id = _auth.currentUser?.uid;
     var currentUserInfo = await db.doc(id).get();
     if (!currentUserInfo.exists) {
-      await db.doc(id).set({
-        "id": id,
-        "first name": "",
-        "father name": "",
-        "last name": "",
-        "nationality": "",
-        "address": "",
-        "education": "",
-        "email": "",
-        "gender": "",
-        "permission": "",
-        "age": "",
-        "phone": widget.userPhone,
-        "date": "",
-        "registered": "",
-      });
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

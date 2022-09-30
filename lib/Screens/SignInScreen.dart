@@ -1,13 +1,6 @@
-// import 'package:center/Screens/VerifyCodeScreen.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-// import 'package:center/Screens/VerifyCodeScreen.dart';
-import 'CreateProfileScreen.dart';
 import 'TextFieldWidget.dart';
 import 'VerifyCodeScreen.dart';
 
@@ -18,27 +11,26 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
-
-
 class _SignInScreenState extends State<SignInScreen> {
   String countryCode = "+971";
-  String countryCodeSyria = "+971";
+  String countryCodeSyria = "+963";
   String verificationFailedMessage = "";
   TextEditingController _phoneController = TextEditingController();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   String newphone = "";
-@override
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 60),
@@ -57,10 +49,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
-              ),SizedBox(height: 150,),
+              ),
+              SizedBox(
+                height: 150,
+              ),
+
+              ///TODO
               Padding(
                 padding: const EdgeInsets.all(8.0),
-
                 child: Text(
                   "Phone Number",
                   style: TextStyle(
@@ -158,112 +154,14 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(
                 height: 60,
               ),
-              // Text(
-              //   "Sign in with",
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(fontWeight: FontWeight.bold),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: [
-              //       GestureDetector(
-              //         onTap: () {},
-              //         child: Container(
-              //           padding: EdgeInsets.all(5),
-              //           decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(10),
-              //               border:
-              //                   Border.all(color: Color(0xEFEFEFFF), width: 2)),
-              //           height: 55,
-              //           width: 55,
-              //           child: SvgPicture.asset(
-              //             'assets/images/google.svg',
-              //             fit: BoxFit.contain,
-              //           ),
-              //         ),
-              //       ),
-              //       GestureDetector(
-              //         onTap: () {},
-              //         child: Container(
-              //           padding: EdgeInsets.all(5),
-              //           decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(10),
-              //             border: Border.all(color: Color(0xEFEFEFFF), width: 2),
-              //           ),
-              //           height: 55,
-              //           width: 55,
-              //           child: SvgPicture.asset(
-              //             'assets/images/face.svg',
-              //             fit: BoxFit.contain,
-              //           ),
-              //         ),
-              //       ),
-              //       GestureDetector(
-              //         onTap: () {},
-              //         child: Container(
-              //           padding: EdgeInsets.all(5),
-              //           decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(10),
-              //             border: Border.all(color: Color(0xEFEFEFFF), width: 2),
-              //           ),
-              //           height: 55,
-              //           width: 55,
-              //           child: SvgPicture.asset(
-              //             'assets/images/apple.svg',
-              //             fit: BoxFit.contain,
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+
               SizedBox(
                 height: 100,
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 70),
-              //   child: Container(
-              //     width: 139,
-              //     height: 48,
-              //     child: RawMaterialButton(
-              //       shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(10)),
-              //       fillColor: Color(0xFCFCFCFF),
-              //       onPressed: () {},
-              //       child: Text("Continue as a Guest"),
-              //     ),
-              //   ),
-              // ),
+
               SizedBox(
                 height: 30,
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       "Create a New Account?  ",
-              //       textAlign: TextAlign.center,
-              //       style: TextStyle(color: Colors.grey),
-              //     ),
-              //     TextButton(
-              //       onPressed: () {
-              //         Navigator.pushReplacement(
-              //           context,
-              //           MaterialPageRoute(
-              //             builder: (context) => SignUpScreen(),
-              //           ),
-              //         );
-              //       },
-              //       child: Text(
-              //         "Sign Up",
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(color: Colors.black),
-              //       ),
-              //     ),
-              //   ],
-              // )
             ],
           ),
         ),

@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_pr1/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Utils/constant.dart';
@@ -41,7 +42,7 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
   }
 
   /// TODO image picker upload
-  Future <void> setCourseData() async {
+  Future<void> _setCourseData() async {
     await FirebaseFirestore.instance.collection('courses').add({
       "course name": _coursename.text,
       "teacher": _teacher.text,
@@ -52,9 +53,9 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
       "participants": 0,
       "class": _class.text,
       "start_date": _startdate.text,
-
     });
   }
+
   ///
 
   @override
@@ -86,14 +87,15 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
             children: [
               image != null
                   ? Image.file(
-                image!,
-                height: 160,
-                width: 160,
-                fit: BoxFit.cover,
-              )
+                      image!,
+                      height: 160,
+                      width: 160,
+                      fit: BoxFit.cover,
+                    )
                   : FlutterLogo(
-                size: 160,
-              ),const SizedBox(
+                      size: 160,
+                    ),
+              const SizedBox(
                 height: 20,
               ),
               const Text("* Course Name:"),
@@ -107,7 +109,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),const Text("* Instructor Name:"),
+              ),
+              const Text("* Instructor Name:"),
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
@@ -118,7 +121,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),const Text("* Course Cost:"),
+              ),
+              const Text("* Course Cost:"),
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
@@ -129,7 +133,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),const Text("* Center Name:"),
+              ),
+              const Text("* Center Name:"),
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
@@ -152,7 +157,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),const Text("* Course Class:"),
+              ),
+              const Text("* Course Class:"),
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
@@ -163,7 +169,8 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               ),
               const SizedBox(
                 height: 20,
-              ),const Text("* Course Start Date:"),
+              ),
+              const Text("* Course Start Date:"),
               TextFormField(
                 keyboardType: TextInputType.text,
                 onChanged: (val) {},
@@ -175,18 +182,30 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(style: ElevatedButton.styleFrom(
-                maximumSize: Size.fromHeight(56),
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                textStyle: TextStyle(fontSize: 20,),),
-                  onPressed: ()=> pickImage(),
-                  child: Row(children: [
-                    Icon(Icons.photo, size: 28, color: Colors.black,),
-                    SizedBox(width: 16,),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  maximumSize: Size.fromHeight(56),
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
+                  textStyle: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                onPressed: () => pickImage(),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.photo,
+                      size: 28,
+                      color: Colors.black,
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
                     Text("Pick Image")
-                  ],),),
-
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -211,10 +230,20 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                       print(NewValue);
                     });
                   }),
-              SizedBox(height: 20,),
-              ElevatedButton(onPressed: (){
-                setCourseData();
-              }, child: Text("Save"))
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    _setCourseData();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
+                  },
+                  child: Text("Save"))
             ],
           ),
         ),
