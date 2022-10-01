@@ -6,10 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:regexed_validator/regexed_validator.dart';
-import '../Utils/ThemeConstants.dart';
 import '../Utils/constant.dart';
 import 'HomeScreen.dart';
-import 'TextFieldWidget.dart';
 
 class ProfileScreen extends StatefulWidget {
   //const ProfileScreen({Key? key}) : super(key: key);
@@ -46,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future _fetchUserData() async {
     await FirebaseFirestore.instance
         .collection("users")
-        .doc(widget.userId)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then(
       (DocumentSnapshot doc) {
@@ -72,7 +70,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchUserData();
+
+    _fetchUserData().then((value) {
+      print("result: 22221111");
+      setState(() {});
+    });
     print("=========================================");
     print(_myemail);
     print(_myphone);

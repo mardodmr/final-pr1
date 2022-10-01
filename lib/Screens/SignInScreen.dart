@@ -13,7 +13,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   String countryCode = "+971";
-  String countryCodeSyria = "+971";
+  String countryCodeSyria = "+963";
   String verificationFailedMessage = "";
   TextEditingController _phoneController = TextEditingController();
 

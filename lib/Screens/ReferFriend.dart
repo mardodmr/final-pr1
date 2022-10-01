@@ -13,8 +13,8 @@ class ReferAFriendScreen extends StatefulWidget {
 }
 
 class _ReferAFriendScreenState extends State<ReferAFriendScreen> {
-  String text = 'asdfasdfas';
-  String subject = 'qwerqwerqwerqwe';
+  String text = 'Get 50% off';
+  String subject = 'Referral';
 ///=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   @override
   Widget build(BuildContext context) {
