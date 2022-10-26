@@ -94,15 +94,17 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState()  {
     super.initState();
     print("i'm in init state");
-    print(widget.userId);
+    print (courseIDs);
+    //print(widget.userId);
     _getUserName().then((value) {
       print("result: 22221111");
       setState(() {});
     });
-    _getCourseIDs().then((value) {
-      print("result: 22221111");
-      setState(() {});
-    });
+    // _getCourseIDs().then((value) {
+    //   print("result: 22221111");
+    //   setState(() {});
+    // });
+    print(courseIDs);
     print(_userName);
     print("done init state");
     //ServiceDetailsScreen(userId: widget.userId);
