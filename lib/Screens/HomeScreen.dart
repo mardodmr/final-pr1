@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   // course ids
-  List<String> courseIDs = [];
+  final List<String> courseIDs = [];
 
   Future<void> _getUserName() async {
     print("i;m in user name");
@@ -80,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //value setting
   //get ids
   Future _getCourseIDs() async {
+    courseIDs.clear();
     await FirebaseFirestore.instance
         .collection("courses")
         .get()
